@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-# capstone
-=======
 # CapstoneProject
->>>>>>> main
