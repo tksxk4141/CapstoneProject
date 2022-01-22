@@ -223,6 +223,10 @@ QualitySettings:
     Nintendo Switch: 5
     PS4: 5
     PSP2: 2
+<<<<<<< HEAD
+=======
+    Stadia: 5
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
     Standalone: 5
     WebGL: 3
     Windows Store Apps: 5

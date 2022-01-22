@@ -12,7 +12,11 @@
     },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
+<<<<<<< HEAD
       "depth": 0,
+=======
+      "depth": 1,
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
