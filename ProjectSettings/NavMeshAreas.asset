@@ -85,6 +85,11 @@ NavMeshProjectSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+<<<<<<< HEAD
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
     debug:
       m_Flags: 0
   m_SettingNames:

@@ -10,10 +10,13 @@ m_ProjectFiles:
     m_ModificationDate:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       ticks: 637783891880000000
     m_Hash: 1518922824
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
       ticks: 637781068661929013
     m_Hash: 2034096432
   m_LockFileStatus:
@@ -30,16 +33,22 @@ m_ProjectFiles:
     m_ModificationDate:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       ticks: 637783891880000000
     m_Hash: 3317231064
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
       ticks: 637781068901265128
     m_Hash: 3196689656
 =======
       ticks: 637783859680000000
     m_Hash: 4197502262
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+<<<<<<< HEAD
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
+=======
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -103,6 +112,7 @@ m_PackageAssets:
 <<<<<<< HEAD
         - 1.14.1
         - 1.14.4
+<<<<<<< HEAD
         - 1.14.7
         - 1.14.9
         - 1.15.1
@@ -111,10 +121,15 @@ m_PackageAssets:
 <<<<<<< HEAD
         - 1.14.1
         - 1.14.4
+=======
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
         - 1.15.1
         - 1.15.4
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+<<<<<<< HEAD
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
+=======
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
         - 1.15.7
         - 1.15.9
@@ -458,7 +473,12 @@ m_PackageAssets:
       datePublishedTicks: 637720564750000000
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
       datePublishedTicks: 637720564750000000
+=======
+      datePublishedTicks: 0
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
       datePublishedTicks: 0
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
@@ -753,7 +773,11 @@ m_PackageAssets:
         - 2.2.0-preview.2
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
         - 2.2.0-preview.2
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
@@ -776,8 +800,11 @@ m_PackageAssets:
         - 3.0.6
         - 3.2.0-pre.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
+=======
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
         - 3.2.0-pre.2
         - 4.0.0-pre.1
@@ -786,12 +813,18 @@ m_PackageAssets:
         - 3.2.0-pre.1
         - 3.2.0-pre.2
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
         compatible:
         - 3.0.6
         - 3.2.0-pre.1
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+<<<<<<< HEAD
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
+=======
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
         verified: 3.0.6
       dependencies:
@@ -918,7 +951,11 @@ m_PackageAssets:
         - 1.5.7
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
         - 1.5.7
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
@@ -933,8 +970,12 @@ m_PackageAssets:
         - 1.7.0-pre.1
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
         - 1.6.3
         - 1.7.0-pre.1
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
@@ -957,7 +998,11 @@ m_PackageAssets:
         - 1.5.7
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
         - 1.5.7
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
@@ -972,8 +1017,12 @@ m_PackageAssets:
         - 1.7.0-pre.1
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
         - 1.6.3
         - 1.7.0-pre.1
+=======
+>>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
+>>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
 =======
 >>>>>>> 9c6d82b17ed85256da3b5e12656728508d6ef622
 >>>>>>> a7bc37e1a403cd9385b08fef880c0b94d0a9c6f0
