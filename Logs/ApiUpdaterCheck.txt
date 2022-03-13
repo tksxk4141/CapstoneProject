@@ -1,20 +1,3 @@
-[api-updater (non-obsolete-error-filter)] 2022-01-23 AM 1:43:50 : Starting F:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 1205.9703ms
-moved types parse time: 72ms
-candidates parse time : 1ms
-C# parse time         : 845ms
-candidates check time : 107ms
-console write time    : 1ms
-
-[api-updater (non-obsolete-error-filter)] 2022-01-23 AM 1:52:15 : Starting F:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 935.8459ms
-moved types parse time: 59ms
-candidates parse time : 1ms
-C# parse time         : 755ms
-candidates check time : 105ms
-console write time    : 1ms
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:0268851ea42b9146b4342e0fec4ec0fa404cc3d51683582996818e634ce73db5
+size 18169
