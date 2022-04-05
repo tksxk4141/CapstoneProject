@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f2af9016032fa472b865dd2f900d411784cb577fe8914dfa7edb667d854338df
-size 786
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using System.IO;//path사용위해
+
+public class cshPlayerManager : MonoBehaviour
+{
+    PhotonView PV;//포톤뷰 선언
+    GameObject controller;
+
+    void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
+
+    void Start()
+    {
+        if (PV.IsMine)//내 포톤 네트워크이면
+        {
+            CreateController();//플레이어 컨트롤러 붙여준다. 
+        }
+    }
+    void CreateController()//플레이어 컨트롤러 만들기
+    {
+        Transform spawnpoint = cshSpawnManager.Instance.GetSpawnpoint(cshLoginValue.usernum);
+        Debug.Log("Instantiated Player Controller");
+        controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
+        //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), Vector3.zero, Quaternion.identity);
+        //포톤 프리펩에 있는 플레이어 컨트롤러를 저 위치에 저 각도로 만들어주기
+    }
+}

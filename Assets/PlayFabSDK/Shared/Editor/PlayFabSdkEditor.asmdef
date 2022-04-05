@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3783763d7c3eb638186223b41f8f5a3153ce4482cf65d66a2c4e7c64be3ec88f
-size 336
+{
+    "name": "PlayFabSDKEditor",
+    "references": [
+        "PlayFab"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c47faaae527404a7823e2b8a500ca889786ecdb119c43ab82a13f532c8b4211c
-size 826
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
+  m_Name: PlayFabEditorPrefsSO
+  m_EditorClassIdentifier: 
+  DevAccountEmail: tksxk4141@naver.com
+  DevAccountToken: 9mydje3cypt8agezoqj566znqrsh4n6y6qxp1wxmc4wkq4ode5p56nmxb3fjunm6toc1bhtqy7nqrpu8afh5f6mpn7e1u9rx64k7echdmx8q1ty34x4rh4p6haxc9txussijw44ibdshjkpxrgxocanqngki45hbc4dgxm9xdfq99w7d5q1wdsyxbzta3h7e6ardkj9a
+  SelectedStudio: CapstoneProject
+  SdkPath: Assets/PlayFabSDK
+  EdExPath: 
+  LocalCloudScriptPath: 
+  PanelIsShown: 0
+  curMainMenuIdx: 1
+  curSubMenuIdx: 0

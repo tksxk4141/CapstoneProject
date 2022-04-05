@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f25598a86a922e39ce9e51ef4310d79d3afb42e619ccc798b833125904a5536c
-size 950
+<linker>
+  <assembly fullname="System">
+    <namespace fullname="System.Net" preserve="all"/>
+    <namespace fullname="System.Net.Configuration" preserve="all"/>
+    <namespace fullname="System.ComponentModel" preserve="all"/>
+    <namespace fullname="System.Runtime.ConstrainedExecution" preserve="all"/>
+    <namespace fullname="System.Runtime.InteropServices" preserve="all"/>
+    <namespace fullname="System.Runtime.Serialization" preserve="all"/>
+    <namespace fullname="System.Configuration" preserve="all"/>
+  </assembly>
+  <assembly fullname="mscorlib">
+    <namespace fullname="System.Security.Cryptography" preserve="all"/>
+  </assembly>
+  <assembly fullname="Mono.Security">
+    <namespace fullname="Mono.Security.Protocol.Tls" preserve="all"/>
+    <namespace fullname="Mono.Security.X509" preserve="all"/>
+  </assembly>
+  <assembly fullname="Assembly-CSharp">
+    <namespace fullname="PlayFab.*" preserve="all"/>
+  </assembly>
+</linker>

@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:df88e8dbab3e601da865b8352d2e6d15654295c55be15bec153324f5f6aa1da7
-size 622
+#if UNITY_2017_1_OR_NEWER
+using PlayFab.PfEditor;
+using UnityEditor;
+using UnityEngine;
+
+public class MakeScriptableObject
+{
+    [MenuItem("PlayFab/MakePlayFabSharedSettings")]
+    public static void MakePlayFabSharedSettings()
+    {
+        PlayFabSharedSettings asset = ScriptableObject.CreateInstance<PlayFabSharedSettings>();
+
+        AssetDatabase.CreateAsset(asset, "Assets/PlayFabSdk/Shared/Public/Resources/PlayFabSharedSettings.asset"); // TODO: Path should not be hard coded
+        AssetDatabase.SaveAssets();
+
+        EditorUtility.FocusProjectWindow();
+
+        Selection.activeObject = asset;
+    }
+}
+#endif

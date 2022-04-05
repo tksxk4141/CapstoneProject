@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3ae215a067496d9b47ccd68fbae38238536a695db89e3e704da34d4cf96a211b
-size 543
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
+using PlayFab;
+using PlayFab.ClientModels;
+
+public class cshLobby : MonoBehaviour
+{
+    public string menuName;
+    public bool open;
+    public void Open()
+    {
+        open = true;
+        gameObject.SetActive(true);//특정 메뉴 켜지기
+    }
+
+    public void Close()
+    {
+        open = false;
+        gameObject.SetActive(false);
+    }
+}
