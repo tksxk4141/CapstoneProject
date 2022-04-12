@@ -53,24 +53,50 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\02.Scripts\csOpenDoor.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\First Person Player\PlayerMovement.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PlayRandomSound.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Z Axis -1\Drawer_Pull_Zopp.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Drawer\X Axis\Drawer_Pull_X.cs" />
+    <Compile Include="Assets\02.Scripts\csLight.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\LightFlicker.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Drawer\Z Axis\Drawer_Pull_Z.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\First Person Player\SceneSwitchGen.cs" />
+    <Compile Include="Assets\02.Scripts\csOpenDoor4.cs" />
     <Compile Include="Assets\MecanimControl\Scripts\MecanimControl.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Closet\ClosetopencloseDoor.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipR.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Doors\opencloseDoor.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\First Person Player\MouseLook.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Slide\opencloseSlide.cs" />
     <Compile Include="Assets\MecanimControl\Demo\Scripts\AnimationControlDemo.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\OvenOpen\OvenFlip.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Windows\opencloseWindow.cs" />
     <Compile Include="Assets\02.Scripts\GunMotion.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PushPhysics.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Doors\opencloseDoor1.cs" />
     <Compile Include="Assets\ModularFirstPersonController\FirstPersonController\FirstPersonController.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Windows\opencloseWindowApt.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Slide\BRGlassDoor.cs" />
+    <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipL.cs" />
+    <Compile Include="Assets\02.Scripts\csOpenDoor2.cs" />
     <Compile Include="Assets\02.Scripts\IKControl.cs" />
+    <Compile Include="Assets\02.Scripts\csOpenDoor3.cs" />
+    <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Windows\opencloseWindow1.cs" />
+    <Compile Include="Assets\02.Scripts\csChangeScene2.cs" />
     <Compile Include="Assets\02.Scripts\cshMaleMotion.cs" />
+    <Compile Include="Assets\02.Scripts\csChangeScene.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\MouseComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UMA\InternalDataStore\InGame\Resources\Shader\NormalShader.compute" />
     <None Include="Assets\MecanimControl\Readme.txt" />
+    <None Include="Assets\Luminaris Starship\Documentation\Readme Luminaris.txt" />
     <None Include="Assets\UMA\InternalDataStore\InGame\Resources\PlaceholderAssets\PlaceholderAssetsREADME.txt" />
     <None Include="Assets\UMA\InternalDataStore\AssetVersion.xml" />
     <None Include="Assets\UMA\Whats New in UMA.txt" />
+    <None Include="Assets\Brick Project Studio\Apartment Kit\Scenes\Message For You Please Read Me.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
