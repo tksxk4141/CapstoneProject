@@ -5,7 +5,7 @@ using UnityEngine;
 public class cshSpawnManager : MonoBehaviour
 {
     public static cshSpawnManager Instance;
-    //다른곳에서 쓰기 쉽게 정적 클래스 선언
+
     [SerializeField] cshSpawnpoint[] spawnpoints;
 
     void Awake()

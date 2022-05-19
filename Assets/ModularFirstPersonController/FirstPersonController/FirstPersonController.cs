@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -17,6 +18,7 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    PhotonView PV;
 
     #region Camera Movement Variables
 
@@ -58,6 +60,11 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
+
+    Animator anim;
+
+    //hainging
+    int hangFlag = 0;
 
     // Internal Variables
     private bool isWalking = false;
@@ -131,11 +138,16 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+   
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        PV = GetComponent<PhotonView>();
 
         crosshairObject = GetComponentInChildren<Image>();
+
+        anim = GetComponentInChildren<Animator>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -151,7 +163,25 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        if(lockCursor)
+        if (!PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+            //내꺼 아니면 카메라 없애기
+            Destroy(rb);
+            //내거아니면 리지드 바디 없애주기
+        }
+
+        #region AnimatorSet
+        anim.SetBool("isGrounded", true);
+        anim.SetBool("isMoveAt", false);
+        anim.SetBool("isPicking", false);
+        anim.SetBool("isHanging", false);
+        anim.SetBool("isHangingMove", false);
+
+
+        #endregion
+
+        if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -202,10 +232,13 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (!PV.IsMine)
+            return;//내꺼아니면 작동안함
+
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
@@ -329,6 +362,7 @@ public class FirstPersonController : MonoBehaviour
         if(enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
         {
             Jump();
+
         }
 
         #endregion
@@ -358,6 +392,10 @@ public class FirstPersonController : MonoBehaviour
 
         CheckGround();
 
+        PickUp();
+
+
+
         if(enableHeadBob)
         {
             HeadBob();
@@ -366,6 +404,9 @@ public class FirstPersonController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!PV.IsMine)
+            return;//내꺼아니면 작동안함
+
         #region Movement
 
         if (playerCanMove)
@@ -384,6 +425,79 @@ public class FirstPersonController : MonoBehaviour
                 isWalking = false;
             }
 
+            //when getkeydown G, character will Hanging
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                if (hangFlag == 0)
+                {
+                    anim.SetBool("isHanging", true);
+                    anim.SetLayerWeight(0, 0);
+                    anim.SetLayerWeight(1, 1);
+                    hangFlag = 1;
+
+                }
+                //getkeydown G twice, character will fall down
+                else if (hangFlag == 1)
+                {
+                    anim.SetBool("isHanging", false);
+                    anim.SetLayerWeight(0, 1);
+                    anim.SetLayerWeight(1, 0);
+                    hangFlag = 0;
+                }
+            }
+
+            //if character is Hanging
+            if ((Input.GetAxis("Horizontal") != 0) || (Input.GetAxis("Vertical") != 0))
+            {
+                if (anim.GetBool("isHanging"))
+                {
+                    //if getkey A or D up, character will be hangingIdle
+                    //Hang move left
+                    if (Input.GetKey(KeyCode.A))
+                    {
+                        anim.SetBool("isHangingMove", true);
+                        anim.SetFloat("hangAt", 0.0f);
+                    }
+                    //Hang move right
+                    if (Input.GetKey(KeyCode.D))
+                    {
+                        anim.SetBool("isHangingMove", true);
+                        anim.SetFloat("hangAt", 1.0f);
+                    }
+                }
+            }
+            else
+            {
+                anim.SetBool("isHangingMove", false);
+            }
+            //왼쪽, 오른쪽, 앞, 뒤 이동 애니메이션 구현
+            if ( (Input.GetAxis("Horizontal") != 0) || (Input.GetAxis("Vertical") != 0) ) {
+
+                anim.SetBool("isMoveAt", true);
+
+                if (Input.GetKey(KeyCode.A))    //왼쪽
+                {
+                    anim.SetFloat("MoveAt", 0.0f);
+                }
+                else if (Input.GetKey(KeyCode.D))    //오른쪽
+                {
+                    anim.SetFloat("MoveAt", 1.0f);
+                }
+                else if (Input.GetKey(KeyCode.W))    //앞
+                {
+                    anim.SetFloat("MoveAt", 2.0f);
+                }
+                else if (Input.GetKey(KeyCode.S))   //뒤
+                {
+                    anim.SetFloat("MoveAt", 3.0f);
+                }
+            }
+            else
+            {
+                anim.SetBool("isMoveAt", false);
+
+            }
+            
             // All movement calculations shile sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
             {
@@ -452,10 +566,12 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.DrawRay(origin, direction * distance, Color.red);
             isGrounded = true;
+            anim.SetBool("isGrounded", true);
         }
         else
         {
             isGrounded = false;
+            anim.SetBool("isGrounded", false);
         }
     }
 
@@ -466,6 +582,7 @@ public class FirstPersonController : MonoBehaviour
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
+            anim.SetBool("isGrounded", false);
         }
 
         // When crouched and using toggle system, will uncrouch for a jump
@@ -496,6 +613,22 @@ public class FirstPersonController : MonoBehaviour
             isCrouched = true;
         }
     }
+
+    //Z키로 물건 줍기
+    private void PickUp()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            anim.SetBool("isPicking", true);
+        }
+        else
+        {
+            anim.SetBool("isPicking", false);
+        }
+
+    }
+
+
 
     private void HeadBob()
     {

@@ -37,18 +37,6 @@ public class cshRoomManager : MonoBehaviourPunCallbacks//다른 포톤 반응 받아들이
 
     void OnSceneLoaded(Scene scene, LoadSceneMode load)
     {
-        /*
-        if(scene.buildIndex == 1)
-        {
-            if (Instance)//다른 룸매니저 존재확인
-            {
-                Destroy(gameObject);//있으면 파괴
-                return;
-            }
-            DontDestroyOnLoad(gameObject);//룸매니저 나혼자면 그대로 
-            Instance = this;
-        }
-        */
         if (scene.buildIndex == 2)//게임씬이면. 0은 현재 시작메뉴 씬이다. 
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);

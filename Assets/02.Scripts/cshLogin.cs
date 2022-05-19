@@ -5,22 +5,26 @@ using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
+using TMPro;
+using Michsky.UI.Shift;
 
 public class cshLogin : MonoBehaviour
 {
-    public InputField ID_Input;
-    public InputField PW_Input;
-    public InputField RegisterID_Input;
-    public InputField RegisterPW_Input;
-    public InputField Email_Input;
-    public Text LoginErrorText;
-    public Text RegisterErrorText;
-    public GameObject LoginPanel;
-    public GameObject RegisterPanel;
+    public GameObject Screen;
+    public GameObject MainPanel;
+    public GameObject ID_Input;
+    public GameObject PW_Input;
+    public GameObject RegisterID_Input;
+    public GameObject RegisterPW_Input;
+    public GameObject Email_Input;
+    public GameObject LoginErrorText;
+    public GameObject RegisterErrorText;
 
     private string username;
     private string password;
     private string email;
+    private string rg_username;
+    private string rg_password;
 
     // Use this for initialization
     void Start()
@@ -30,19 +34,19 @@ public class cshLogin : MonoBehaviour
 
     public void ID_value_Changed()
     {
-        if(LoginPanel.activeSelf == true) username = ID_Input.text.ToString();
-        if (RegisterPanel.activeSelf == true) username = RegisterID_Input.text.ToString();
+        username = ID_Input.GetComponent<TMP_InputField>().text;
+        rg_username = RegisterID_Input.GetComponent<TMP_InputField>().text;
     }
 
     public void PW_value_Changed()
     {
-        if (LoginPanel.activeSelf == true) password = PW_Input.text.ToString();
-        if (RegisterPanel.activeSelf == true) password = RegisterPW_Input.text.ToString();
+        password = PW_Input.GetComponent<TMP_InputField>().text;
+        rg_password = RegisterPW_Input.GetComponent<TMP_InputField>().text;
     }
 
     public void Email_value_Changed()
     {
-        email = Email_Input.text.ToString();
+        email = Email_Input.GetComponent<TMP_InputField>().text;
     }
 
     public void Login()
@@ -68,55 +72,41 @@ public class cshLogin : MonoBehaviour
 
     public void Register()
     {
-        var request = new RegisterPlayFabUserRequest { Username = username, Password = password, Email = email, DisplayName = username };
+        var request = new RegisterPlayFabUserRequest { Username = rg_username, Password = rg_password, Email = email, DisplayName = rg_username };
         PlayFabClientAPI.RegisterPlayFabUser(request, RegisterSuccess, RegisterFailure);
-    }
-
-    public void OnClickRegisterButton()
-    {
-        if (LoginPanel != null) LoginPanel.SetActive(false);
-        if (RegisterPanel != null) RegisterPanel.SetActive(true);
-    }
-
-    public void OnClickResetButton()
-    {
-        if (LoginPanel != null) LoginPanel.SetActive(false);
-        if (RegisterPanel != null) RegisterPanel.SetActive(true);
-    }
-
-    public void OnClickBackButton()
-    {
-        if (LoginPanel != null) LoginPanel.SetActive(true);
-        if (RegisterPanel != null) RegisterPanel.SetActive(false);
     }
 
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("로그인 성공");
         cshLoginValue.username = result.InfoResultPayload.PlayerProfile.DisplayName;
-        SceneManager.LoadScene("LobbyScene");
+
+        SceneManager.LoadScene(1);
+        /*
+        Screen.GetComponent<Animator>().Play("Login to Loading");
+        Screen.GetComponent<TimedEvent>().StartIEnumerator();
+        MainPanel.GetComponent<cshLauncher>().ConnectToServer();
+        */
     }
 
     private void OnLoginFailure(PlayFabError error)
     {
         Debug.LogWarning("로그인 실패");
         Debug.LogWarning(error.GenerateErrorReport());
-        LoginErrorText.text = error.GenerateErrorReport();
+        //LoginErrorText.text = error.GenerateErrorReport();
     }
 
     private void RegisterSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("가입 성공");
-        RegisterErrorText.text = "가입 성공";
-        if (LoginPanel != null) LoginPanel.SetActive(true);
-        if (RegisterPanel != null) RegisterPanel.SetActive(false);
+        Screen.GetComponent<Animator>().Play("Sign Up to Login");
     }
 
     private void RegisterFailure(PlayFabError error)
     {
         Debug.LogWarning("가입 실패");
         Debug.LogWarning(error.GenerateErrorReport());
-        RegisterErrorText.text = error.GenerateErrorReport();
+        //RegisterErrorText.text = error.GenerateErrorReport();
     }
 
     void Update()
@@ -126,25 +116,15 @@ public class cshLogin : MonoBehaviour
     }
 
     private void Tab() {
-        if (LoginPanel.activeSelf == true) {
-            if (ID_Input.isFocused == true){ if (Input.GetKeyUp(KeyCode.Tab)) PW_Input.Select(); }
-            if (PW_Input.isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) ID_Input.Select(); }
-        }
-        if (RegisterPanel.activeSelf == true) {
-            if (RegisterID_Input.isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) RegisterPW_Input.Select(); }
-            if (RegisterPW_Input.isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) Email_Input.Select(); }
-            if (Email_Input.isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) RegisterID_Input.Select(); }
-        }
+            if (ID_Input.GetComponent<TMP_InputField>().isFocused == true){ if (Input.GetKeyUp(KeyCode.Tab)) PW_Input.GetComponent<TMP_InputField>().Select(); }
+            if (PW_Input.GetComponent<TMP_InputField>().isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) ID_Input.GetComponent<TMP_InputField>().Select(); }
+            if (RegisterID_Input.GetComponent<TMP_InputField>().isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) RegisterPW_Input.GetComponent<TMP_InputField>().Select(); }
+            if (RegisterPW_Input.GetComponent<TMP_InputField>().isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) Email_Input.GetComponent<TMP_InputField>().Select(); }
+            if (Email_Input.GetComponent<TMP_InputField>().isFocused == true) { if (Input.GetKeyUp(KeyCode.Tab)) RegisterID_Input.GetComponent<TMP_InputField>().Select(); }
     }
     private void Enter()
     {
-        if (LoginPanel.activeSelf == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Return)) Login(); 
-        }
-        if (RegisterPanel.activeSelf == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Return)) Register();
-        }
+        if (Input.GetKeyDown(KeyCode.Return)) Login();
+        if (Input.GetKeyDown(KeyCode.Return)) Register();
     }
 }

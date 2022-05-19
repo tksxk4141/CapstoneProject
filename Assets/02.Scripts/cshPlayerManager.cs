@@ -27,16 +27,13 @@ public class cshPlayerManager : MonoBehaviourPunCallbacks
     {
         Transform spawnpoint = cshSpawnManager.Instance.GetSpawnpoint(cshLoginValue.usernum);
         Debug.Log("Instantiated Player Controller");
-        controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
-        //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), Vector3.zero, Quaternion.identity);
+        controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
         //포톤 프리펩에 있는 플레이어 컨트롤러를 저 위치에 저 각도로 만들어주기
     }
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-        //PhotonNetwork.LeaveLobby();
-        PhotonNetwork.LoadLevel(1);
-        //SceneManager.LoadScene("LobbyScene");
+        SceneManager.LoadScene(1);
         //Destroy(gameObject);
     }
 }

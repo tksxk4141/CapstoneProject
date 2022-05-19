@@ -7,14 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/01.Scenes/LoginScene.unity
-    guid: e5f067dfde2769b4fbf88ff2512c91ec
+    guid: 50178fac2986bb644bcabf63ce37ea4c
   - enabled: 1
-    path: Assets/01.Scenes/LobbyScene.unity
-    guid: c7ae5bfde1920494ba82a4cd9a09eda0
-  - enabled: 0
-    path: Assets/01.Scenes/GameScene.unity
-    guid: 0d0b0a0b54dd77d4cbab2b30f55d66ac
+    path: Assets/01.Scenes/Main Menu.unity
+    guid: bb0d1a535d98200429532517579fcac9
   - enabled: 1
     path: Assets/Scene/capstoneScene.unity
     guid: 1237e98bfbc330b4193c3f273d1444b7
+  - enabled: 1
+    path: Assets/Scene/secondFloor.unity
+    guid: 87d8cf5419b4c3447b220e63fb52cca7
+  - enabled: 1
+    path: Assets/Scene/thirdFloor.unity
+    guid: 9e94223fea2edbb45a3c979e0b12976e
   m_configObjects: {}

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class cshPlayerController : MonoBehaviour
+public class cshPlayerController : MonoBehaviourPunCallbacks
 {
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
     [SerializeField] GameObject cameraHolder;
@@ -83,4 +84,10 @@ public class cshPlayerController : MonoBehaviour
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         //이동하는거는 계산 끝난 moveAmount만큼만 고정된시간(0.2초)마다에 맞춰서
     }
+    public void QuitGame()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(1);
+    }
+
 }
