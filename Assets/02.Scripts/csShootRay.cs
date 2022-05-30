@@ -17,7 +17,7 @@ public class csShootRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (csItemManager.instance.item_list.Contains("Repulsor"))
+        if (cshLoginValue.usernum == 0 && csItemManager.instance.item_list1.Contains("Repulsor")|| cshLoginValue.usernum == 1 && csItemManager.instance.item_list2.Contains("Repulsor"))
         {
             if (Input.GetMouseButton(0))
             {

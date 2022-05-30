@@ -70,6 +70,7 @@ public class cshLogin : MonoBehaviour
         PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess, OnLoginFailure);
     }
 
+
     public void Register()
     {
         var request = new RegisterPlayFabUserRequest { Username = rg_username, Password = rg_password, Email = email, DisplayName = rg_username };
@@ -108,6 +109,26 @@ public class cshLogin : MonoBehaviour
         Debug.LogWarning(error.GenerateErrorReport());
         //RegisterErrorText.text = error.GenerateErrorReport();
     }
+    /*
+    void SendCustomAccountRecoveryEmail(string emailAddress, string emailTemplateId)
+    {
+        var request = new SendCustomAccountRecoveryEmailRequest
+        {
+            Email = emailAddress,
+            EmailTemplateId = emailTemplateId
+        };
+
+        PlayFabServerAPI.SendCustomAccountRecoveryEmail(request, res =>
+        {
+            Debug.Log("An account recovery email has been sent to the player's email address.");
+        }, FailureCallback);
+    }
+    */
+    void FailureCallback(PlayFabError error)
+    {
+        Debug.LogWarning("Something went wrong with your API call. Here's some debug information:");
+        Debug.LogError(error.GenerateErrorReport());
+    }
 
     void Update()
     {
@@ -124,7 +145,7 @@ public class cshLogin : MonoBehaviour
     }
     private void Enter()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) Login();
-        if (Input.GetKeyDown(KeyCode.Return)) Register();
+        if (ID_Input.GetComponent<TMP_InputField>().isFocused == true|| PW_Input.GetComponent<TMP_InputField>().isFocused == true) if (Input.GetKeyDown(KeyCode.Return)) Login();
+        if (RegisterID_Input.GetComponent<TMP_InputField>().isFocused == true|| RegisterPW_Input.GetComponent<TMP_InputField>().isFocused == true) if (Input.GetKeyDown(KeyCode.Return)) Register();
     }
 }

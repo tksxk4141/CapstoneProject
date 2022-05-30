@@ -1,0 +1,11 @@
+Model Information:
+* title:	Elevator From Portal 2 (Original Model)(rigged)
+* source:	https://sketchfab.com/3d-models/elevator-from-portal-2-original-modelrigged-322c3ba1df8c4ce0b4e89482ca91fae6
+* author:	David.3D.Art (https://sketchfab.com/David.3D.models)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Elevator From Portal 2 (Original Model)(rigged)" (https://sketchfab.com/3d-models/elevator-from-portal-2-original-modelrigged-322c3ba1df8c4ce0b4e89482ca91fae6) by David.3D.Art (https://sketchfab.com/David.3D.models) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

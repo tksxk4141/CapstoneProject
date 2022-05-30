@@ -14,6 +14,13 @@ TagManager:
   - Magnet
   - magnetCheck
   - ExitMiro
+  - crown
+  - belt
+  - obstacle
+  - button
+  - item
+  - door
+  - pipeline
   layers:
   - Default
   - TransparentFX

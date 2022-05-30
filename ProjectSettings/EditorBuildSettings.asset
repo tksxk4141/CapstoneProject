@@ -9,24 +9,30 @@ EditorBuildSettings:
     path: Assets/01.Scenes/LoginScene.unity
     guid: 50178fac2986bb644bcabf63ce37ea4c
   - enabled: 1
-    path: Assets/01.Scenes/Main Menu.unity
-    guid: bb0d1a535d98200429532517579fcac9
+    path: Assets/01.Scenes/LobbyScene.unity
+    guid: eec39925fe89f2c49bac76dc5c396252
   - enabled: 1
-    path: Assets/Scene/capstoneScene.unity
-    guid: 1237e98bfbc330b4193c3f273d1444b7
+    path: Assets/01.Scenes/1st firstFloor.unity
+    guid: 579c4c402f65c3d46a7bf7c3c03204f5
   - enabled: 1
-    path: Assets/Scene/secondFloor.unity
-    guid: 87d8cf5419b4c3447b220e63fb52cca7
+    path: Assets/01.Scenes/1st secondFloor.unity
+    guid: 70a6485e56946a1459bc97c00f790577
   - enabled: 1
-    path: Assets/Scene/thirdFloor.unity
-    guid: 9e94223fea2edbb45a3c979e0b12976e
+    path: Assets/01.Scenes/1st turnul.unity
+    guid: 1fad6c7ee1223bb44b325f538f9fcdae
   - enabled: 1
-    path: Assets/Scene/turnul.unity
-    guid: 074e23fec0abaf9489b5a802cfa8110e
+    path: Assets/01.Scenes/1st thirdFloor.unity
+    guid: 123150058d29ea544aa4358c53dbc48a
   - enabled: 1
-    path: Assets/Scene/secondFloor2.unity
-    guid: b75ade73dabbde746b31c4b34bdad2db
+    path: Assets/01.Scenes/2nd firstFloor.unity
+    guid: 8d82ec6bf88266443a6ee31cf27142d7
   - enabled: 1
-    path: Assets/Scene/thirdFloor2.unity
-    guid: 036f35e138ebdc14f8a877eee59a6e1a
+    path: Assets/01.Scenes/2nd secondFloor.unity
+    guid: b813db32456009b42b0cdc8f9dfc37a6
+  - enabled: 1
+    path: Assets/01.Scenes/2nd turnul.unity
+    guid: 0cb25296472ea5f4e87f1b3062d52341
+  - enabled: 1
+    path: Assets/01.Scenes/2nd thirdFloor.unity
+    guid: 3dce0d3c2cd92b44fb7f5783d66befc8
   m_configObjects: {}

@@ -8,7 +8,8 @@ using System.IO;//Path사용위에 사용
 public class cshRoomManager : MonoBehaviourPunCallbacks//다른 포톤 반응 받아들이기
 {
     public static cshRoomManager Instance;//Room Manager 스크립트를 메서드로 사용하기 위해 선언
-
+    public int selectSpwanPoint = 0;
+    public int storyFlag = 0;
     void Awake()
     {
         if (Instance)//다른 룸매니저 존재확인
@@ -37,10 +38,9 @@ public class cshRoomManager : MonoBehaviourPunCallbacks//다른 포톤 반응 받아들이
 
     void OnSceneLoaded(Scene scene, LoadSceneMode load)
     {
-        if (scene.buildIndex == 2)//게임씬이면. 0은 현재 시작메뉴 씬이다. 
+        if (scene.buildIndex == 2|| scene.buildIndex == 3)//게임씬이면. 0은 현재 시작메뉴 씬이다. 
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
     }
-
 }

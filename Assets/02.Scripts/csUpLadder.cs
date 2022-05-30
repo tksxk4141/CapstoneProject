@@ -32,7 +32,7 @@ public class csUpLadder : MonoBehaviour
         }
         if (me.transform.position.y >= 10)
         {
-            SceneManager.LoadScene("thirdFloor2");
+            //SceneManager.LoadScene("thirdFloor2");
         }
     }
 }

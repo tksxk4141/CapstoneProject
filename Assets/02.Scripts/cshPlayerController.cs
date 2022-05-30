@@ -84,10 +84,4 @@ public class cshPlayerController : MonoBehaviourPunCallbacks
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         //이동하는거는 계산 끝난 moveAmount만큼만 고정된시간(0.2초)마다에 맞춰서
     }
-    public void QuitGame()
-    {
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene(1);
-    }
-
 }

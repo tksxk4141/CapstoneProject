@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
 public class cshPlayerList : MonoBehaviourPunCallbacks
 {
-    [SerializeField] TMP_Text text;
+    public TMP_Text text;
     Player player;//포톤 리얼타임은 Player를 선언 할 수 있게 해준다.
 
     public void SetUp(Player _player)
@@ -16,7 +15,12 @@ public class cshPlayerList : MonoBehaviourPunCallbacks
         player = _player;
         text.text = _player.NickName;//플레이어 이름 받아서 그사람 이름이 목록에 뜨게 만들어준다. 
     }
-    
+
+    public void SetUpFriends(string friend)
+    {
+        text.text = friend;//플레이어 이름 받아서 그사람 이름이 목록에 뜨게 만들어준다. 
+    }
+
     public override void OnPlayerLeftRoom(Player otherPlayer)//플레이어가 방떠났을때 호출
     {
         if (player == otherPlayer)//나간 플레이어가 나면?

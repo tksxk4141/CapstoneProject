@@ -20,6 +20,9 @@ public class csItemManager : MonoBehaviour
         }
     }
 
-    //게임 내에서 씬이동시 유지하고 픈 골드 값(변수)
+    //게임 내에서 씬이동시 유지하고 싶픈 값(변수)
+    public int destination=0;
     public List<string> item_list = new List<string>();
+    public List<string> item_list1 = new List<string>();
+    public List<string> item_list2 = new List<string>();
 }

@@ -8,49 +8,51 @@ namespace SojaExiles
 
 	public class Drawer_Pull_X : MonoBehaviour
 	{
-
 		public Animator pull_01;
 		public bool open;
-		public Transform Player;
-
+		//public Transform Player;
+		public Transform[] Players = new Transform[2];
 		void Start()
 		{
 			open = false;
 		}
-
+		void Update()
+		{
+			Players[0] = GameObject.Find("SceneManager").GetComponent<cshSceneManager>().Player[0].transform;
+			Players[1] = GameObject.Find("SceneManager").GetComponent<cshSceneManager>().Player[1].transform;
+		}
 		void OnMouseOver()
 		{
 			{
-				if (Player)
+				for (int i = 0; i < Players.Length; i++)
 				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 10)
+					if (Players[i])
 					{
-						print("object name");
-						if (open == false)
+						float dist = Vector3.Distance(Players[i].position, transform.position);
+						if (dist < 10)
 						{
-							if (Input.GetMouseButtonDown(0))
-							{
-								StartCoroutine(opening());
-							}
-						}
-						else
-						{
-							if (open == true)
+							print("object name");
+							if (open == false)
 							{
 								if (Input.GetMouseButtonDown(0))
 								{
-									StartCoroutine(closing());
+									StartCoroutine(opening());
 								}
 							}
-
+							else
+							{
+								if (open == true)
+								{
+									if (Input.GetMouseButtonDown(0))
+									{
+										StartCoroutine(closing());
+									}
+								}
+							}
 						}
-
 					}
 				}
-
 			}
-
 		}
 
 		IEnumerator opening()

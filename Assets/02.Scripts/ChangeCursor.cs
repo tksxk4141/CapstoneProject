@@ -8,7 +8,7 @@ public class ChangeCursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
     }
 
 }

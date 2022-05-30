@@ -17,6 +17,7 @@ public class cshLauncher : MonoBehaviourPunCallbacks
 
     [SerializeField] TMP_InputField roomNameInputField;
     [SerializeField] TMP_Text errorText;
+    [SerializeField] TMP_Text userName;
     [SerializeField] TMP_Text roomNameText;
     [SerializeField] Transform roomListContent;
     [SerializeField] GameObject roomListItemPrefab;
@@ -62,6 +63,8 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined Lobby");
         PhotonNetwork.NickName = cshLoginValue.username;
+        userName.text = cshLoginValue.username;
+        Instantiate(playerListItemPrefab, GameObject.Find("User List").transform).GetComponent<cshPlayerList>().SetUpFriends(cshLoginValue.username);
     }
     public void CreateRoom()//방만들기
     {
@@ -81,6 +84,7 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     {
         MenuManager.GetComponent<MainPanelManager>().OpenPanel("Room");
         GameObject.Find("Button List").SetActive(false);
+        //GameObject.Find("Party").SetActive(false);
         Instantiate(RoomManager);
         Player[] players = PhotonNetwork.PlayerList;
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;//들어간 방 이름표시
@@ -119,8 +123,6 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         //PhotonNetwork.CurrentRoom.IsVisible = false; //게임 시작하면 안보임
-        //Screen.GetComponent<Animator>().Play("Login to Loading");
-        //Screen.GetComponent<TimedEvent>().StartIEnumerator();
 
         PhotonNetwork.LoadLevel(2);//1인 이유는 빌드에서 scene 번호가 1번씩이기 때문이다. 0은 초기 씬.
     }
@@ -129,6 +131,7 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();//방떠나기 포톤 네트워크 기능
         GameObject.Find("Top Panel").transform.Find("Button List").gameObject.SetActive(true);
+        //GameObject.Find("Bottom Panel").transform.Find("Party").gameObject.SetActive(true);
         MenuManager.GetComponent<MainPanelManager>().OpenPanel("Home");
     }
 
@@ -140,18 +143,11 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRandomRoom();
     }
-    public override void OnLeftRoom()//방을 떠나면 호출
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            SceneManager.LoadScene(1);
-            return;
-        }
-    }
+
     
     public override void OnRoomListUpdate(List<RoomInfo> roomList)//포톤의 룸 리스트 기능
     {
-        GameObject tempRoom = null;
+        //GameObject tempRoom = null;
         foreach (Transform room in roomListContent)//존재하는 모든 roomListContent
         {
             Destroy(room.gameObject);//룸리스트 업데이트가 될때마다 싹지우기
@@ -170,5 +166,61 @@ public class cshLauncher : MonoBehaviourPunCallbacks
         Instantiate(playerListItemPrefab, playerListContent).GetComponent<cshPlayerList>().SetUp(newPlayer);
         //instantiate로 prefab을 playerListContent위치에 만들어주고 그 프리펩을 이름 받아서 표시.
     }
+
+    public void GetFriends()
+    {
+        List<PlayFab.ClientModels.FriendInfo> _friends = null;
+
+        PlayFabClientAPI.GetFriendsList(new GetFriendsListRequest
+        {
+            IncludeSteamFriends = false,
+            IncludeFacebookFriends = false,
+            XboxToken = null
+        }, result => {
+            _friends = result.Friends;
+            DisplayFriends(_friends); // triggers your UI
+        }, DisplayPlayFabError);
+    }
+    public enum FriendIdType { PlayFabId, Username, Email, DisplayName };
+
+    public void AddFriend(FriendIdType idType, string friendId)
+    {
+        var request = new AddFriendRequest();
+        switch (idType)
+        {
+            case FriendIdType.PlayFabId:
+                request.FriendPlayFabId = friendId;
+                break;
+            case FriendIdType.Username:
+                request.FriendUsername = friendId;
+                break;
+            case FriendIdType.Email:
+                request.FriendEmail = friendId;
+                break;
+            case FriendIdType.DisplayName:
+                request.FriendTitleDisplayName = friendId;
+                break;
+        }
+        // Execute request and update friends when we are done
+        PlayFabClientAPI.AddFriend(request, result => {
+            Debug.Log("Friend added successfully!");
+        }, DisplayPlayFabError);
+    }
+    public void DisplayFriends(List<PlayFab.ClientModels.FriendInfo> friendsCache) 
+    {
+        foreach (Transform child in GameObject.Find("Friend List").transform)
+        {
+            if (child.CompareTag("playerbutton"))
+                Destroy(child.gameObject);
+        }
+        friendsCache.ForEach(f =>Instantiate(playerListItemPrefab, GameObject.Find("Friend List").transform).GetComponent<cshPlayerList>().SetUpFriends(f.Username));
+    }
+    public void AddFriend()
+    {
+        FriendIdType idType = FriendIdType.Username;
+        string friendid = cshPlayerButton.friendname;
+        AddFriend(idType, friendid);
+    }
+    public void DisplayPlayFabError(PlayFabError error) { Debug.Log(error.GenerateErrorReport()); }
 
 }
