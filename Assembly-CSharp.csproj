@@ -274,6 +274,7 @@
      <Compile Include="Assets\MecanimControl\Demo\Scripts\AnimationControlDemo.cs" />
      <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
      <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Materials\Objects\FireJetPack\FlyDemo.cs" />
+     <Compile Include="Assets\02.Scripts\csCountMagnet.cs" />
      <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\CustomInputField.cs" />
      <Compile Include="Assets\02.Scripts\csShootRay.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
@@ -339,6 +340,7 @@
      <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
      <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipL.cs" />
+     <Compile Include="Assets\02.Scripts\csMakeExitPortal.cs" />
      <Compile Include="Assets\02.Scripts\IKControl.cs" />
      <Compile Include="Assets\paidAssets\Doctor&apos;s office-20220414T101021Z-001\Doctor_s office\PostProcessing\Runtime\Components\FogComponent.cs" />
      <Compile Include="Assets\02.Scripts\csOpenDoor3.cs" />
@@ -409,12 +411,14 @@
      <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\SlimeCutOut.shader" />
      <None Include="Assets\paidAssets\Doctor&apos;s office-20220414T101021Z-001\Doctor_s office\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
      <None Include="Assets\paidAssets\effects\Hovl Studio\AOE Magic spells Vol.1\Shaders\Distortion.shader" />
+     <None Include="Assets\UMA\Content\HumanFemale2\SSS\Shader\SSS_Utils.cginc" />
      <None Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Shaders\Fast UI Blur.shader" />
      <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\GlowAdditiveSimple.shader" />
      <None Include="Assets\paidAssets\Doctor&apos;s office-20220414T101021Z-001\Doctor_s office\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
      <None Include="Assets\paidAssets\Doctor&apos;s office-20220414T101021Z-001\Doctor_s office\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
      <None Include="Assets\paidAssets\effects\Hovl Studio\AOE Magic spells Vol.1\Shaders\Blend_CenterGlow.shader" />
      <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\Projectors\ProjectorAdditive.shader" />
+     <None Include="Assets\UMA\Content\HumanFemale2\SSS\Shader\SSS.shader" />
      <None Include="Assets\paidAssets\Read Me.txt" />
      <None Include="Assets\Luminaris Starship\Documentation\Readme Luminaris.txt" />
      <None Include="Assets\paidAssets\effects\Hovl Studio\AOE Magic spells Vol.1\Prefabs\Readme.txt" />
@@ -503,7 +507,9 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\paidAssets\NOT_Lonely-20220414T101013Z-001\NOT_Lonely\Advanced Cable Creator\Shaders\NL_VertexAnim_tess.shader" />
      <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\Distortion\DistortionCullOff.shader" />
+     <None Include="Assets\UMA\Content\HumanFemale2\Athletic Body SSS\Mecanim\Mecanim HairFadeCutout.shader" />
      <None Include="Assets\paidAssets\RayFire-20220414T093534Z-001\RayFire\Info\License.txt" />
+     <None Include="Assets\UMA\Content\HumanMale2\Athletic SSS\Mecanim\Hair Shader\Mecanim HairFadeCutout 1.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\Mobile\IceVert.shader" />
      <None Include="Assets\Photon\PhotonVoice\PhotonVoiceLibs\WebRTC-LICENSE.txt" />
