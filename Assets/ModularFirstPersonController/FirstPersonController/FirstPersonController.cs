@@ -19,11 +19,10 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
     PhotonView PV;
-
+    public float hp = 100.0f;
     #region Camera Movement Variables
 
     public Camera playerCamera;
-
     public float fov = 60f;
     public bool invertCamera = false;
     public bool cameraCanMove = true;
@@ -58,13 +57,12 @@ public class FirstPersonController : MonoBehaviour
     #region Movement Variables
 
     public bool playerCanMove = true;
+    public bool isHanging = false;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
 
     Animator anim;
 
-    //hainging
-    int hangFlag = 0;
 
     // Internal Variables
     private bool isWalking = false;
@@ -232,6 +230,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        playerCamera.transform.position = GameObject.Find("head").transform.position;
         if (!PV.IsMine)
             return;//내꺼아니면 작동안함
 
@@ -240,8 +239,17 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if (cameraCanMove)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
+            if (!isHanging)
+            {
+                yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+                rb.useGravity = true;
+            }
+            else
+            {
+                isGrounded = false;
+                rb.useGravity = false;
+            }
             if (!invertCamera)
             {
                 pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
@@ -412,8 +420,10 @@ public class FirstPersonController : MonoBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+            
+            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+            if (!isHanging)
+                targetVelocity.z = Input.GetAxis("Vertical");
             // Checks if player is walking and isGrounded
             // Will allow head bob
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
@@ -426,24 +436,18 @@ public class FirstPersonController : MonoBehaviour
             }
 
             //when getkeydown G, character will Hanging
-            if (Input.GetKeyDown(KeyCode.G))
+            if (isHanging)
             {
-                if (hangFlag == 0)
-                {
-                    anim.SetBool("isHanging", true);
-                    anim.SetLayerWeight(0, 0);
-                    anim.SetLayerWeight(1, 1);
-                    hangFlag = 1;
-
-                }
-                //getkeydown G twice, character will fall down
-                else if (hangFlag == 1)
-                {
-                    anim.SetBool("isHanging", false);
-                    anim.SetLayerWeight(0, 1);
-                    anim.SetLayerWeight(1, 0);
-                    hangFlag = 0;
-                }
+                anim.SetBool("isHanging", true);
+                anim.SetLayerWeight(0, 0);
+                anim.SetLayerWeight(1, 1);
+            }
+            //getkeydown G twice, character will fall down
+            else
+            {
+                anim.SetBool("isHanging", false);
+                anim.SetLayerWeight(0, 1);
+                anim.SetLayerWeight(1, 0);
             }
 
             //if character is Hanging

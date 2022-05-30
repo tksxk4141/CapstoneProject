@@ -1,29 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BigBlit.ActivePack;
 
 public class csOpenDoor2 : MonoBehaviour
 {
     Vector3 position;
+    Vector3 startPosition;
     public bool open = false;
-    GameObject me;
+    public bool close = false;
+    GameObject lever;
+    GameObject lever2;
     // Start is called before the first frame update
     void Start()
     {
         position = transform.position;
-        me = GameObject.Find("FirstPersonController");
+        startPosition = transform.position;
+        lever = GameObject.Find("Lever");
+        lever2 = GameObject.Find("Lever2");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.G) && me.transform.position.x > 3 && me.transform.position.z > 16 && me.transform.position.z < 19)
+        if ((lever.GetComponent<Lever>()._value == 1) || (lever2.GetComponent<Lever>()._value == 1))
         {
             open = true;
+            close = false;
+        }
+        else if ((lever.GetComponent<Lever>()._value == 0) || (lever2.GetComponent<Lever>()._value == 0))
+        {
+            open = false;
+            close = true;
         }
         if (open && transform.position.z > 11)
         {
             position.z -= 1 * Time.deltaTime;
+            transform.position = position;
+        }
+        else if(close && transform.position.z < startPosition.z)
+        {
+            position.z += 1 * Time.deltaTime;
             transform.position = position;
         }
     }

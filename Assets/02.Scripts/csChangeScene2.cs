@@ -28,11 +28,11 @@ public class csChangeScene2 : MonoBehaviour
         {
             ch = false;
         }
-        if (me.transform.position.x>33 && me.transform.position.x < 34 &&
+        if (me.transform.position.x < 1 &&
              me.transform.position.y > 3 && ch)
         {
 
-            SceneManager.LoadScene("thirdFloor");
+            SceneManager.LoadScene("turnul");
         }
     }
 }

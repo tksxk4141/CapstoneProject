@@ -3,12 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - miro
+  - lever
+  - Floor
+  - Fire
+  - Item
+  - Pipe
+  - Portal
+  - Magnet
+  - magnetCheck
+  - ExitMiro
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
