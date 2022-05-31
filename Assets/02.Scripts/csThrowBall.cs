@@ -9,16 +9,13 @@ public class csThrowBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (csItemManager.instance.item_list.Contains("IceBomb"))
+        if (gameObject.GetComponent<cshPlayerInteraction>().selecteditem.Equals("IceBomb"))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetMouseButtonUp(0))
             {
-
                 GameObject instate = Instantiate(ball, ballPos.position, ballPos.parent.rotation);
-                //Vector3 speed = new Vector3(0, 200, 2000);
                 instate.GetComponent<Rigidbody>().AddForce(instate.transform.forward * 3000f);
             }
         }
     }
-    
 }

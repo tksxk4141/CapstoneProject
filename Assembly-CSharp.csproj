@@ -391,6 +391,7 @@
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\02.Scripts\cshSecondFloorDoor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\paidAssets\RayFire\Plugins\Windows\x86_x64\RFLib_DotNet_2018.dll" />

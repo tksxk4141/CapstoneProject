@@ -17,22 +17,19 @@ public class csShootRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cshLoginValue.usernum == 0 && csItemManager.instance.item_list1.Contains("Repulsor")|| cshLoginValue.usernum == 1 && csItemManager.instance.item_list2.Contains("Repulsor"))
+        if (gameObject.GetComponent<cshPlayerInteraction>().selecteditem.Equals("Repulsor")&&Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0))
+            if (!isRay)
             {
-                if (!isRay)
-                {
-                    ins = Instantiate(Ray, rayPos.position, rayPos.rotation);
-                    ins.transform.parent = GameObject.Find("PlayerCamera").transform;
-                    isRay = true;
-                }
+                ins = Instantiate(Ray, rayPos.position, rayPos.rotation);
+                ins.transform.parent = GameObject.Find("PlayerCamera").transform;
+                isRay = true;
             }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                Destroy(ins, 0.2f);
-                isRay = false;
-            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            Destroy(ins, 0.2f);
+            isRay = false;
         }
     }
 }

@@ -19,7 +19,7 @@ public class csInFire : MonoBehaviour
         hang = gameObject.transform.position;
         if (GetComponent<FirstPersonController>().isHanging) //매달린 상태면
         {
-            hang2 = new Vector3(hang.x, 2.8f, 33.3f);
+            hang2 = new Vector3(hang.x, 2.8f, 36.3f);
             gameObject.transform.position = hang2;
             gameObject.transform.rotation = hangPos.rotation;
             if (Input.GetKey(KeyCode.Space))
@@ -33,8 +33,7 @@ public class csInFire : MonoBehaviour
     {
         if(other.gameObject.tag == "Fire")
         {
-            Debug.Log("아야");
-            GetComponent<FirstPersonController>().hp -= Time.deltaTime;
+            GetComponent<cshPlayerInteraction>().hp -= Time.deltaTime;
         }
     }
     private void OnCollisionEnter(Collision col) //파이프에 매달리기
@@ -42,7 +41,6 @@ public class csInFire : MonoBehaviour
         if (col.gameObject.tag == "Pipe")
         {
             GetComponent<FirstPersonController>().isHanging = true;
-
         }
     }
 }

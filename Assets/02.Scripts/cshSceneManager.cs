@@ -53,11 +53,11 @@ public class cshSceneManager : MonoBehaviour
         }
         for (int i = 0; i < check2.Length; i++)
         {
-            if (check1[i].transform.name.Equals("Playerf(Clone)"))
+            if (check2[i].transform.name.Equals("Playerf(Clone)"))
             {
                 checkplayer1 = true;
             }
-            if (check1[i].transform.name.Equals("Playerm(Clone)"))
+            if (check2[i].transform.name.Equals("Playerm(Clone)"))
             {
                 checkplayer2 = true;
             }

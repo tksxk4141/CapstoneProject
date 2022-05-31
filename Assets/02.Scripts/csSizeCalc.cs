@@ -21,19 +21,13 @@ public class csSizeCalc : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        if (csItemManager.instance.item_list.Contains("WingShoes"))
+        if (gameObject.GetComponent<cshPlayerInteraction>().selecteditem.Equals("WingShoes"))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                if (!useWingShoes)
-                {
-                    useWingShoes = true;
-                }
-                else
-                {
-                    useWingShoes = false;
-                }
-            }
+            useWingShoes = true;
+        }
+        else
+        {
+            useWingShoes = false;
         }
         if (isSmall)
         {
@@ -47,7 +41,6 @@ public class csSizeCalc : MonoBehaviour
             {
                 GetComponent<FirstPersonController>().jumpPower = 2f;
             }
-            
         }
         else if (!isSmall)
         {
@@ -77,7 +70,6 @@ public class csSizeCalc : MonoBehaviour
                 isSmall = false;
                 isSkilltime = false;
                 timer = 3.0f;
-                
             }
         }
     }

@@ -13,7 +13,7 @@ public class csOpenPortal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (csItemManager.instance.item_list.Contains("PortalGun"))
+        if (gameObject.GetComponent<cshPlayerInteraction>().selecteditem.Equals("PortalGun"))
         {
             if (status)
             {
@@ -27,7 +27,7 @@ public class csOpenPortal : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetMouseButton(0))
             {
                 status = true;
                 open = Instantiate(openportal, portalPos.position, portalPos.rotation);
