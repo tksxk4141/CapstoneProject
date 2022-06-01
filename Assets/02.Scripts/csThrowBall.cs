@@ -11,7 +11,7 @@ public class csThrowBall : MonoBehaviour
     {
         if (gameObject.GetComponent<cshPlayerInteraction>().selecteditem.Equals("IceBomb"))
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 GameObject instate = Instantiate(ball, ballPos.position, ballPos.parent.rotation);
                 instate.GetComponent<Rigidbody>().AddForce(instate.transform.forward * 3000f);

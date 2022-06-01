@@ -9,12 +9,16 @@ namespace SojaExiles
 	public class Drawer_Pull_X : MonoBehaviour
 	{
 		public Animator pull_01;
+		AudioSource audio;
+		public AudioClip openSound;
+		public AudioClip closeSound;
 		public bool open;
 		//public Transform Player;
 		public Transform[] Players = new Transform[2];
 		void Start()
 		{
 			open = false;
+			audio = GetComponent<AudioSource>();
 		}
 		void Update()
 		{
@@ -36,6 +40,8 @@ namespace SojaExiles
 							{
 								if (Input.GetMouseButtonDown(0))
 								{
+									audio.clip = openSound;
+									audio.Play();
 									StartCoroutine(opening());
 								}
 							}
@@ -45,6 +51,8 @@ namespace SojaExiles
 								{
 									if (Input.GetMouseButtonDown(0))
 									{
+										audio.clip = closeSound;
+										audio.Play();
 										StartCoroutine(closing());
 									}
 								}

@@ -21,6 +21,9 @@ TagManager:
   - item
   - door
   - pipeline
+  - playerbutton
+  - menupanel
+  - Ladder
   layers:
   - Default
   - TransparentFX

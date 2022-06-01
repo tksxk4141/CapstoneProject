@@ -94641,6 +94641,8 @@ MonoBehaviour:
   - {fileID: 6656642623574401950}
   - {fileID: 9120071538243783499}
   CheckingCircle: {fileID: 6747554702008599465, guid: c33143bc6d3c0914986d1a8799d27236, type: 3}
+  selecteditem: 
+  hp: 100
 --- !u!114 &3584969783260498737
 MonoBehaviour:
   m_ObjectHideFlags: 0

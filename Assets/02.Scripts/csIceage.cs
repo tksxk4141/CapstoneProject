@@ -39,6 +39,7 @@ public class csIceage : MonoBehaviour
     {
         if (col.gameObject.tag == "Floor")
         {
+            this.gameObject.GetComponent<AudioSource>().Play();
             status = true;
            
         }

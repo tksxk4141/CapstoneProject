@@ -17,6 +17,8 @@ using Photon.Pun;
 
 public class FirstPersonController : MonoBehaviour
 {
+    AudioSource audio;
+    GameObject instance = null;
     private Rigidbody rb;
     PhotonView PV;
     public float hp = 100.0f;
@@ -60,12 +62,12 @@ public class FirstPersonController : MonoBehaviour
     public bool isHanging = false;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
-
+    public bool isLadder = false;
     Animator anim;
 
 
     // Internal Variables
-    private bool isWalking = false;
+    public bool isWalking = false;
 
     #region Sprint
 
@@ -88,7 +90,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private CanvasGroup sprintBarCG;
-    private bool isSprinting = false;
+    public bool isSprinting = false;
     private float sprintRemaining;
     private float sprintBarWidth;
     private float sprintBarHeight;
@@ -104,7 +106,7 @@ public class FirstPersonController : MonoBehaviour
     public float jumpPower = 5f;
 
     // Internal Variables
-    private bool isGrounded = false;
+    public bool isGrounded = false;
 
     #endregion
 
@@ -140,6 +142,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
 
@@ -239,7 +242,11 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if (cameraCanMove)
         {
-
+            if (isLadder)
+            {
+                isGrounded = false;
+                rb.useGravity = false;
+            }
             if (!isHanging)
             {
                 yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -429,10 +436,12 @@ public class FirstPersonController : MonoBehaviour
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
                 isWalking = true;
+
             }
             else
             {
                 isWalking = false;
+
             }
 
             //when getkeydown G, character will Hanging
@@ -537,7 +546,6 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 isSprinting = false;
-
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
                     sprintBarCG.alpha -= 3 * Time.deltaTime;
@@ -570,11 +578,23 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.DrawRay(origin, direction * distance, Color.red);
             isGrounded = true;
+
+            /*if (instance == null)
+            {
+                instance = Instantiate(GetComponent<csPersonSound>().jumpSound, GetComponent<csPersonSound>().soundPos, GetComponent<csPersonSound>().soundPos);
+            }
+            else
+            {
+                Destroy(instance);
+            }*/
+        
             anim.SetBool("isGrounded", true);
         }
         else
         {
             isGrounded = false;
+            audio.clip = GetComponent<csPersonSound>().jump;
+            audio.Play();
             anim.SetBool("isGrounded", false);
         }
     }
@@ -586,6 +606,7 @@ public class FirstPersonController : MonoBehaviour
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
             isGrounded = false;
+            
             anim.SetBool("isGrounded", false);
         }
 

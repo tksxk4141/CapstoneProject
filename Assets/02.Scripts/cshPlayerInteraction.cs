@@ -17,7 +17,8 @@ public class cshPlayerInteraction : MonoBehaviour
     public GameObject ItemImagePrefab;
     public GameObject[] ItemWindow;
     public GameObject CheckingCircle;
-
+    Transform ladderPos;
+    Vector3 new_ladder;
     //private string[] Item = new string[4];
     GameObject tempitem;
 
@@ -34,6 +35,7 @@ public class cshPlayerInteraction : MonoBehaviour
     private bool isChecking = false;
     private int itemnum = 0;
     public float hp = 100;
+    private float high = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +52,6 @@ public class cshPlayerInteraction : MonoBehaviour
         HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
         HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
 
-        hang = gameObject.transform.position;
-        if(SceneManager.GetActiveScene().buildIndex == 3|| SceneManager.GetActiveScene().buildIndex == 7)
-        {
-            hangPos = GameObject.Find("hangPos").transform;
-        }
     }
 
     // Update is called once per frame
@@ -103,6 +100,7 @@ public class cshPlayerInteraction : MonoBehaviour
                 TryMovingObstacle();
             }
             OnPipeline();
+            OnLadder();
         }
     }
     void SelectItem()
@@ -165,7 +163,7 @@ public class cshPlayerInteraction : MonoBehaviour
 
     void ShowInteractionKey()
     {
-        if (pointerhit.CompareTag("door")||pointerhit.CompareTag("obstacle")||pointerhit.CompareTag("Pipe"))
+        if (pointerhit.CompareTag("door")||pointerhit.CompareTag("obstacle")||pointerhit.CompareTag("Pipe") || pointerhit.CompareTag("Ladder"))
             pressF.SetActive(true);
         else
             pressF.SetActive(false);
@@ -192,12 +190,8 @@ public class cshPlayerInteraction : MonoBehaviour
     }
     void OnPipeline()
     {
-        hang = gameObject.transform.position;
         if (GetComponent<FirstPersonController>().isHanging) //매달린 상태면
         {
-            hang2 = new Vector3(hang.x, 2.8f, 36.3f);
-            gameObject.transform.position = hang2;
-            gameObject.transform.rotation = hangPos.rotation;
             if (Input.GetKey(KeyCode.Space))
             {
                 GetComponent<FirstPersonController>().isHanging = false;
@@ -206,10 +200,44 @@ public class cshPlayerInteraction : MonoBehaviour
 
         if (Input.GetKey(KeyCode.F)&& pointerhit.CompareTag("Pipe"))
         {
-            GetComponent<FirstPersonController>().isHanging = true;
+            if(gameObject.transform.position.y < 2.0f)
+            {
+                StartCoroutine(ShowText(gameMessage, "밟을 곳이 필요하다.", 2f));
+            }
+            else
+            {
+                GetComponent<FirstPersonController>().isHanging = true;
+                hangPos = GameObject.Find("hangPos").transform;
+                hang = pointerhit.transform.position;
+                hang2 = new Vector3(hang.x, 2.8f, hang.z);
+                gameObject.transform.position = hang2;
+                gameObject.transform.rotation = hangPos.rotation;
+            }
+        }
+    }
 
-            //StartCoroutine(CheckCircle(checkCircle.transform, 3f));
-            //isChecking = true;
+    void OnLadder()
+    {
+        if (GetComponent<FirstPersonController>().isLadder) //매달린 상태면
+        {
+            GetComponent<FirstPersonController>().isHanging = true;
+            high += Time.deltaTime;
+            new_ladder = new Vector3(ladderPos.position.x, high, ladderPos.position.z);
+            gameObject.transform.position = new_ladder;
+        }
+        if (Input.GetKey(KeyCode.F) && pointerhit.CompareTag("Ladder"))
+        {
+            if (gameObject.transform.position.z < 24)
+            {
+                StartCoroutine(ShowText(gameMessage, "가까이 가야 할 것 같다.", 2f));
+            }
+            else
+            {
+                GetComponent<FirstPersonController>().isLadder = true;
+                ladderPos = GameObject.Find("ladderPos").transform;
+                gameObject.transform.position = ladderPos.position;
+                gameObject.transform.rotation = ladderPos.rotation;
+            }
         }
     }
 
