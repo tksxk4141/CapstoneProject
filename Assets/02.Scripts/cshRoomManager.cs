@@ -10,6 +10,9 @@ public class cshRoomManager : MonoBehaviourPunCallbacks//다른 포톤 반응 받아들이
     public static cshRoomManager Instance;//Room Manager 스크립트를 메서드로 사용하기 위해 선언
     public int selectSpwanPoint = 0;
     public int storyFlag = 0;
+
+    public bool isFireExists = false;
+
     void Awake()
     {
         if (Instance)//다른 룸매니저 존재확인

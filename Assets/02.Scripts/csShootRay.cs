@@ -21,6 +21,7 @@ public class csShootRay : MonoBehaviour
         {
             if (!isRay)
             {
+                gameObject.GetComponent<FirstPersonController>().anim.SetBool("isSuperPower", true);
                 ins = Instantiate(Ray, rayPos.position, rayPos.rotation);
                 ins.transform.parent = GameObject.Find("PlayerCamera").transform;
                 isRay = true;
@@ -28,6 +29,7 @@ public class csShootRay : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            gameObject.GetComponent<FirstPersonController>().anim.SetBool("isSuperPower", false);
             Destroy(ins, 0.2f);
             isRay = false;
         }

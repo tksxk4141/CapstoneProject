@@ -21,6 +21,8 @@ TagManager:
   - item
   - door
   - pipeline
+  - CutSceneHandR
+  - Ladder
   layers:
   - Default
   - TransparentFX

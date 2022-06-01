@@ -35,4 +35,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/2nd thirdFloor.unity
     guid: 3dce0d3c2cd92b44fb7f5783d66befc8
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/1st1f/1sf1f.unity
+    guid: 4356ad746ed54a3429ad5677d5d00797
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/1st1f/1st1f_2.unity
+    guid: fa109da5f2512044b9ae56f8c18ce5e4
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/1st2f/1st2f.unity
+    guid: 66928cf3f3630a245bfca513c47916a1
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/1st2f/1st2f_2.unity
+    guid: bb5025a21770e78458f836e0d00c3cff
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/1st3f/1st3f.unity
+    guid: bb71f16018c95ac439c7b595d1de6cc9
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/2nd2f/2nd2f.unity
+    guid: a14256b0f0246dd4e8020ee34e019bf1
+  - enabled: 1
+    path: Assets/01.Scenes/CutScene/2nd3f/2nd3f.unity
+    guid: 3a873a8758d159f4bb282a750aa3e6f0
   m_configObjects: {}

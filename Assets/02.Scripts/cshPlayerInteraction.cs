@@ -17,14 +17,18 @@ public class cshPlayerInteraction : MonoBehaviour
     public GameObject ItemImagePrefab;
     public GameObject[] ItemWindow;
     public GameObject CheckingCircle;
-
+    Transform ladderPos;
+    Transform ladderTopPos;
+    Vector3 new_ladder;
     //private string[] Item = new string[4];
     GameObject tempitem;
 
-    GameObject pressF, pressE, checkBar, checkCircle, HpBar, PauseMenu, gameMessage;
+    GameObject pressF, pressE, checkBar, checkCircle, HpBar, PauseMenu, gameMessage, storyLine;
     PointerEventData pointerEventData;
     List<RaycastResult> results;
     public string selecteditem = "";
+
+    List<string> itemlist;
 
     GameObject pointerhit;
 
@@ -34,6 +38,7 @@ public class cshPlayerInteraction : MonoBehaviour
     private bool isChecking = false;
     private int itemnum = 0;
     public float hp = 100;
+    private float high = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,26 +48,22 @@ public class cshPlayerInteraction : MonoBehaviour
         checkBar = GameObject.Find("Interaction").transform.Find("Checking").gameObject;
         checkCircle = GameObject.Find("Interaction").transform.Find("Checking Circle Panel").gameObject;
         gameMessage = GameObject.Find("Interaction").transform.Find("GameMessage").gameObject;
-
+        storyLine = GameObject.Find("TextCanvas").transform.Find("Panel").gameObject;
         PauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Manager").gameObject;
 
         HpBar = GameObject.Find("Health");
         HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
         HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
-
-        hang = gameObject.transform.position;
-        if(SceneManager.GetActiveScene().buildIndex == 3|| SceneManager.GetActiveScene().buildIndex == 7)
-        {
-            hangPos = GameObject.Find("hangPos").transform;
-        }
+        CheckItemlist();
+        ShowstroyLine();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckItemlist();
         SelectItem();
-        checkHp();
+        CheckHp();
+        ShowstroyLine();
 
         PhysicsRaycaster ray = camera.GetComponent<PhysicsRaycaster>();
         results = new List<RaycastResult>();
@@ -97,53 +98,155 @@ public class cshPlayerInteraction : MonoBehaviour
                 ShowInteractionKey();
                 GetItem();
             }
-            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 7f)
+            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 7f&& pointerhit.CompareTag("obstacle"))
             {
                 ShowInteractionKey();
                 TryMovingObstacle();
             }
             OnPipeline();
+            OnLadder();
+        }
+    }
+    void CheckHp()
+    {
+        HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
+        HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
+    }
+    void CheckItemlist()
+    {
+        if (cshLoginValue.usernum == 0)
+        {
+            itemlist = csItemManager.instance.item_list1.ToList();
+        }
+        if (cshLoginValue.usernum == 1)
+        {
+            itemlist = csItemManager.instance.item_list2.ToList();
+        }
+        if (itemlist.Count != 0)
+        {
+            for (int i = 0; i < itemlist.Count; i++)
+            {
+                for (int j = 0; j < ItemImage.Length; j++)
+                {
+                    if (ItemImage[j].name.Equals(itemlist[i]))
+                    {
+                        GameObject tempimg = Instantiate(ItemImagePrefab);
+                        tempimg.GetComponent<Image>().sprite = ItemImage[j];
+                        tempimg.transform.SetParent(ItemWindow[itemnum].transform);
+                        tempimg.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                        tempimg.transform.localScale = Vector3.one;
+                        itemnum++;
+                        if (itemlist[i].Equals("Crown"))
+                        {
+                            tempitem.transform.SetParent(bodyParts[0].transform);
+                            tempitem.transform.position = bodyParts[0].transform.position;
+                            tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
+                        }
+                        if (itemlist[i].Equals("Repulsor"))
+                        {
+                            GameObject temp = tempitem.transform.Find("Medieval_Fantasy_Glove_Right").gameObject;
+                            temp.transform.SetParent(bodyParts[2].transform);
+                            temp.transform.position = bodyParts[2].transform.position;
+                            temp.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                            if (this.name.Equals("Playerf(Clone)"))
+                            {
+                                temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                                temp.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                            }
+                            else
+                            {
+                                temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                                temp.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                            }
+                        }
+                        if (itemlist[i].Equals("WingShoes"))
+                        {
+                            GameObject temp1 = tempitem.transform.Find("WingShoes_Left").gameObject;
+                            GameObject temp2 = tempitem.transform.Find("WingShoes_Right").gameObject;
+                            temp1.transform.SetParent(bodyParts[3].transform);
+                            temp2.transform.SetParent(bodyParts[4].transform);
+                            temp1.transform.position = bodyParts[3].transform.position;
+                            temp2.transform.position = bodyParts[4].transform.position;
+                            if (this.name.Equals("Playerf(Clone)"))
+                            {
+                                temp1.transform.localPosition = new Vector3(0.1f, -0.095f, 0.015f);
+                                temp1.transform.localRotation = Quaternion.Euler(new Vector3(70f, 10f, 97f));
+                                temp2.transform.localPosition = new Vector3(-0.1f, 0.146f, -0.017f);
+                                temp2.transform.localRotation = Quaternion.Euler(new Vector3(-110f, 12f, -97f));
+                            }
+                            else
+                            {
+                                temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
+                                temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     void SelectItem()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            for(int i=0;i<ItemWindow.Length; i++)
+            if (ItemWindow[0].transform.Find("Border").gameObject.activeSelf)
             {
-                ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                DeselectItem(0);
             }
-            SelectedItem(0);
+            else
+            {
+                for (int i = 0; i < ItemWindow.Length; i++)
+                {
+                    ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                }
+                SelectedItem(0);
+            }
         }
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            for (int i = 0; i < ItemWindow.Length; i++)
+            if (ItemWindow[1].transform.Find("Border").gameObject.activeSelf)
             {
-                ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                DeselectItem(1);
             }
-            SelectedItem(1);
+            else
+            {
+                for (int i = 0; i < ItemWindow.Length; i++)
+                {
+                    ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                }
+                SelectedItem(1);
+            }
         }
-        if (Input.GetKey(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            for (int i = 0; i < ItemWindow.Length; i++)
+            if (ItemWindow[2].transform.Find("Border").gameObject.activeSelf)
             {
-                ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                DeselectItem(2);
             }
-            SelectedItem(2);
+            else
+            {
+                for (int i = 0; i < ItemWindow.Length; i++)
+                {
+                    ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                }
+                SelectedItem(2);
+            }
         }
-        if (Input.GetKey(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            for (int i = 0; i < ItemWindow.Length; i++)
+            if (ItemWindow[3].transform.Find("Border").gameObject.activeSelf)
             {
-                ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                DeselectItem(3);
             }
-            SelectedItem(3);
+            else
+            {
+                for (int i = 0; i < ItemWindow.Length; i++)
+                {
+                    ItemWindow[i].transform.Find("Border").gameObject.SetActive(false);
+                }
+                SelectedItem(3);
+            }
         }
-    }
-    void checkHp()
-    {
-        HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
-        HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
     }
     void SelectedItem(int select)
     {
@@ -151,21 +254,35 @@ public class cshPlayerInteraction : MonoBehaviour
         if (ItemWindow[select].transform.Find("ItemImage(Clone)"))
             selecteditem = ItemWindow[select].transform.Find("ItemImage(Clone)").GetComponent<Image>().sprite.name;
     }
-    void CheckItemlist()
+    void DeselectItem(int deselect)
     {
-        if (cshLoginValue.usernum == 0)
+        ItemWindow[deselect].transform.Find("Border").gameObject.SetActive(false);
+        selecteditem = "";
+    }
+  
+    void ShowstroyLine()
+    {
+        if (storyLine.activeSelf)
         {
-            //itemlist = csItemManager.instance.item_list1.ToList();
+            for(int i = 0; i < ItemWindow.Length; i++)
+            {
+                ItemWindow[i].SetActive(false);
+            }
+            HpBar.SetActive(false);
         }
-        if (cshLoginValue.usernum == 1)
+        else
         {
-            //itemlist = csItemManager.instance.item_list2.ToList();
+            for (int i = 0; i < ItemWindow.Length; i++)
+            {
+                ItemWindow[i].SetActive(true);
+            }
+            HpBar.SetActive(true);
         }
     }
 
     void ShowInteractionKey()
     {
-        if (pointerhit.CompareTag("door")||pointerhit.CompareTag("obstacle")||pointerhit.CompareTag("Pipe"))
+        if (pointerhit.CompareTag("door")||pointerhit.CompareTag("obstacle")||pointerhit.CompareTag("Pipe") || pointerhit.CompareTag("Ladder"))
             pressF.SetActive(true);
         else
             pressF.SetActive(false);
@@ -177,11 +294,11 @@ public class cshPlayerInteraction : MonoBehaviour
 
     void TryMovingObstacle()
     {
-        if (Input.GetKey(KeyCode.F) && pointerhit.tag == "obstacle" && !selecteditem.Equals("Crown"))
+        if (Input.GetKey(KeyCode.F) && !selecteditem.Equals("Crown"))
         {
             StartCoroutine(ShowText(gameMessage, "힘이 부족한것 같다.", 2f));
         }
-        if (Input.GetKey(KeyCode.F) && pointerhit.tag == "obstacle" && selecteditem.Equals("Crown"))
+        if (Input.GetKey(KeyCode.F) && selecteditem.Equals("Crown"))
         {
             StartCoroutine(RotateCheckBar(checkBar.transform.Find("CheckBar").gameObject.transform, 3f));
         }
@@ -192,24 +309,70 @@ public class cshPlayerInteraction : MonoBehaviour
     }
     void OnPipeline()
     {
-        hang = gameObject.transform.position;
         if (GetComponent<FirstPersonController>().isHanging) //매달린 상태면
         {
-            hang2 = new Vector3(hang.x, 2.8f, 36.3f);
-            gameObject.transform.position = hang2;
-            gameObject.transform.rotation = hangPos.rotation;
             if (Input.GetKey(KeyCode.Space))
             {
                 GetComponent<FirstPersonController>().isHanging = false;
             }
         }
-
         if (Input.GetKey(KeyCode.F)&& pointerhit.CompareTag("Pipe"))
         {
-            GetComponent<FirstPersonController>().isHanging = true;
+            if(gameObject.transform.position.y < 2.0f)
+            {
+                StartCoroutine(ShowText(gameMessage, "밟을 곳이 필요하다.", 2f));
+            }
+            else
+            {
+                GetComponent<FirstPersonController>().isHanging = true;
+                hangPos = GameObject.Find("hangPos").transform;
+                hang = pointerhit.transform.position;
+                hang2 = new Vector3(hang.x, 2.8f, hang.z);
+                gameObject.transform.position = hang2;
+                gameObject.transform.rotation = hangPos.rotation;
+            }
+        }
+    }
 
-            //StartCoroutine(CheckCircle(checkCircle.transform, 3f));
-            //isChecking = true;
+    void OnLadder()
+    {
+        if (GetComponent<FirstPersonController>().isLadder) //매달린 상태면
+        {
+            if (gameObject.transform.position.y > 9)
+            {
+                ladderTopPos = GameObject.Find("ladderTopPos").transform;
+                gameObject.transform.position = ladderTopPos.position;
+                GetComponent<FirstPersonController>().isLadder = false;
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    high += Time.deltaTime;
+                    new_ladder = new Vector3(ladderPos.position.x, high, ladderPos.position.z);
+                    gameObject.transform.position = new_ladder;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    high -= Time.deltaTime;
+                    new_ladder = new Vector3(ladderPos.position.x, high, ladderPos.position.z);
+                    gameObject.transform.position = new_ladder;
+                }
+            }
+        }
+        if (Input.GetKey(KeyCode.F) && pointerhit.CompareTag("Ladder"))
+        {
+            if (gameObject.transform.position.z < 24)
+            {
+                StartCoroutine(ShowText(gameMessage, "가까이 가야 할 것 같다.", 2f));
+            }
+            else
+            {
+                GetComponent<FirstPersonController>().isLadder = true;
+                ladderPos = GameObject.Find("ladderPos").transform;
+                gameObject.transform.position = ladderPos.position;
+                gameObject.transform.rotation = ladderPos.rotation;
+            }
         }
     }
 
@@ -230,7 +393,7 @@ public class cshPlayerInteraction : MonoBehaviour
 
                 for (int i = 0; i < ItemPrefab.Length; i++)
                 {
-                    if (pointerhit.name == ItemPrefab[i].name)
+                    if (pointerhit.name.Equals(ItemPrefab[i].name))
                     {
                         tempitem = Instantiate(ItemPrefab[i], new Vector3(0, 0, 0), Quaternion.identity);
                     }
@@ -240,10 +403,63 @@ public class cshPlayerInteraction : MonoBehaviour
                     tempitem.transform.SetParent(bodyParts[0].transform);
                     tempitem.transform.position = bodyParts[0].transform.position;
                     tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
-                    tempitem.tag = "crown";
                 }
-                
-                for(int i = 0; i < ItemImage.Length; i++)
+                if (pointerhit.transform.name.Equals("Repulsor"))
+                {
+                    GameObject temp = tempitem.transform.Find("Medieval_Fantasy_Glove_Right").gameObject;
+                    temp.transform.SetParent(bodyParts[2].transform);
+                    temp.transform.position = bodyParts[2].transform.position;
+                    temp.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                    if (this.name.Equals("Playerf(Clone)"))
+                    {
+                        temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                        temp.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                    }
+                    else
+                    {
+                        temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                        temp.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                    }
+                }
+                if (pointerhit.transform.name.Equals("WingShoes"))
+                {
+                    GameObject temp1 = tempitem.transform.Find("WingShoes_Left").gameObject;
+                    GameObject temp2 = tempitem.transform.Find("WingShoes_Right").gameObject;
+                    temp1.transform.SetParent(bodyParts[3].transform);
+                    temp2.transform.SetParent(bodyParts[4].transform);
+                    temp1.transform.position = bodyParts[3].transform.position;
+                    temp2.transform.position = bodyParts[4].transform.position;
+                    if (this.name.Equals("Playerf(Clone)"))
+                    {
+                        temp1.transform.localPosition = new Vector3(0.1f, -0.095f, 0.015f);
+                        temp1.transform.localRotation = Quaternion.Euler(new Vector3(70f, 10f, 97f));
+                        temp2.transform.localPosition = new Vector3(-0.1f, 0.146f, -0.017f);
+                        temp2.transform.localRotation = Quaternion.Euler(new Vector3(-110f, 12f, -97f));
+                    }
+                    else
+                    {
+                        temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
+                        temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
+                    }
+                }
+                if (pointerhit.transform.name.Equals("PortalGun"))
+                {
+                    tempitem.transform.SetParent(bodyParts[1].transform);
+                    tempitem.transform.position = bodyParts[1].transform.position;
+
+                    if (this.name.Equals("Playerf(Clone)"))
+                    {
+                        tempitem.transform.localPosition = new Vector3(-0.08f, 0.019f, 0.056f);
+                        tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                    }
+                    else
+                    {
+                        tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
+                        tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                    }
+
+                }
+                for (int i = 0; i < ItemImage.Length; i++)
                 {
                     if (ItemImage[i].name.Equals(pointerhit.transform.name))
                     {
@@ -291,6 +507,7 @@ public class cshPlayerInteraction : MonoBehaviour
             }
             yield return null;
         }
+        checkBar.SetActive(false);
     }
 
     public IEnumerator CheckCircle(Transform transform, float timeToCheck)
@@ -325,6 +542,7 @@ public class cshPlayerInteraction : MonoBehaviour
             }
             yield return null;
         }
+        checkCircle.SetActive(false);
         isChecking = false;
         Destroy(temp);
     }

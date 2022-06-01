@@ -8,6 +8,7 @@ public class csSizeCalc : MonoBehaviour
     float timer = 3.0f;
     bool isSkilltime = false;
     bool useWingShoes = false;
+
     // Start is called before the first frame update
     void Start()
     {

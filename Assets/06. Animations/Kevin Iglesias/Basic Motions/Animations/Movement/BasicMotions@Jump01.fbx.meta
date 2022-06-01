@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cca5a2859174f294aa9622c880cf727f
+guid: 3d634e21af2cf7e42a5e8a44beb76f52
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -465,7 +465,7 @@ ModelImporter:
       takeName: BasicMotions@Jump01
       internalID: 0
       firstFrame: 0
-      lastFrame: 34
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

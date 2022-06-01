@@ -48,8 +48,10 @@ public class cshSceneManager : MonoBehaviour
             {
                 checkplayer2 = true;
             }
-            if(checkplayer1&&checkplayer2)
+            if (checkplayer1 && checkplayer2)
+            {
                 SceneChange();
+            }
         }
         for (int i = 0; i < check2.Length; i++)
         {

@@ -62,6 +62,7 @@
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Effects\Bloom\Bloom.cs" />
     <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\First Person Player\PlayerMovement.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\OnStartSendCollision.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckFire.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Input\PointerDragController.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Balls\ProjectileCollisionBehaviour.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Events\ToggleableEventTrigger.cs" />
     <Compile Include="Assets\02.Scripts\cshPlayerControllerb.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Utils\ColorGradingCurve.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTryThirdFloorScriptManager.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\ChangePOV.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FadeInOutShaderFloat.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FadeInOutScale.cs" />
@@ -92,13 +94,17 @@
     <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Drawer\X Axis\Drawer_Pull_X.cs" />
     <Compile Include="Assets\paidAssets\effects\ARPG Effects\Demo\Scripts\ARPGFXLoopScript.cs" />
     <Compile Include="Assets\02.Scripts\csUpLadder.cs" />
-    <Compile Include="Assets\02.Scripts\cshScriptManager.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\FadeInandOut.cs" />
+    <Compile Include="Assets\02.Scripts\cshCutSceneManager.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondFloorTimelineController.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\EffectSettings.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManager.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\FirstFloorScriptManager.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\CharacterInstantiation.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\PostProcessingProfile.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Demo\RealtimeReflection.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\MoveToFirstFloor.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerGameLogo.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
@@ -107,7 +113,6 @@
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursorAnimate.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Common\BehaviourInfoAttribute.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainPanelButton.cs" />
-    <Compile Include="Assets\MecanimControl\Scripts\MecanimControl.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\SplashScreenManager.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabLogger.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\ChapterButton.cs" />
@@ -115,6 +120,7 @@
     <Compile Include="Assets\02.Scripts\cshRoomManager.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
     <Compile Include="Assets\02.Scripts\cshRoomList.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\EndingTimelineController.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\Billboard.cs" />
@@ -133,6 +139,8 @@
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Other\UIElementInFront.cs" />
     <Compile Include="Assets\02.Scripts\csIceage.cs" />
     <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\OvenOpen\OvenFlip.cs" />
+    <Compile Include="Assets\02.Scripts\cshSecondFloorDoor.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckWarehouse.cs" />
     <Compile Include="Assets\paidAssets\effects\ARPG Effects\Scripts\ARPGFXLightFade.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Events\PressableEventTrigger.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoiceUI\Scripts\BackgroundMusicController.cs" />
@@ -144,6 +152,7 @@
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\paidAssets\RayFire\Tutorial\Scripts\DemolitionEventScript.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Balls\AddMaterialOnHit.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTrySecondFloorScriptManager.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Misc\EmissionController.cs" />
     <Compile Include="Assets\paidAssets\NOT_Lonely\Advanced Cable Creator\ACC_Trail.cs" />
     <Compile Include="Assets\paidAssets\effects\Hovl Studio\AOE Magic spells Vol.1\Demo AOE skills\CameraHolder.cs" />
@@ -151,12 +160,14 @@
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FixShaderQueue.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PushPhysics.cs" />
+    <Compile Include="Assets\02.Scripts\GunPoint.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\RotateAround.cs" />
     <Compile Include="Assets\paidAssets\effects\ARPG Effects\Demo\Scripts\ARPGSceneSelect.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Components\DitheringComponent.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Events\DraggableEventTrigger.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\PostProcessingComponent.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Other\CanvasManager.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckElevator.cs" />
     <Compile Include="Assets\ModularFirstPersonController\FirstPersonController\FirstPersonController.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabUI.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\SoundsForJoinAndLeave.cs" />
@@ -182,6 +193,7 @@
     <Compile Include="Assets\02.Scripts\cshPlayerButton.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Events\ValueableEventTrigger.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\TimelineController.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\MouseLookHelper.cs" />
     <Compile Include="Assets\paidAssets\NOT_Lonely\Advanced Cable Creator\ACC_Sequence.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerImage.cs" />
@@ -193,8 +205,10 @@
     <Compile Include="Assets\02.Scripts\csChangeScene.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabBrowserManager.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Buffs\DebuffOnEnemyFromCollision.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\ThirdFloorTryToOpenDoorScriptManager.cs" />
     <Compile Include="Assets\02.Scripts\cshPlayerGroundCheck.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\MouseComponent.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\FirstFloorTimelineController.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Misc\ActivePackCommon.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Shots\LineRendererBehaviour.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SliderManager.cs" />
@@ -202,6 +216,7 @@
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Demo\Scripts\FPSController.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Editor Handlers\ShiftUIEditorHandler.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Components\FxaaComponent.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondFloorScriptManager.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FadeInOutShaderColor.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Interfaces\IToggleable.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Buffs\ShieldCollisionBehaviour.cs" />
@@ -212,6 +227,7 @@
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\VoiceDemoUI.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\SketchfabImporterWindow.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTrySecondFloorTimelineController.cs" />
     <Compile Include="Assets\02.Scripts\cshLoginValue.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FadeInOutSound.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\DistortionMobileCamera.cs" />
@@ -222,6 +238,7 @@
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\Highlighter.cs" />
     <Compile Include="Assets\paidAssets\effects\ARPG Effects\Scripts\ARPGFXRotation.cs" />
     <Compile Include="Assets\SciFi Warehouse Kit\Demo\Scripts\PlayRandomSound.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckMoveToRestaurant.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
     <Compile Include="Assets\02.Scripts\cshPlayerList.cs" />
@@ -231,6 +248,7 @@
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Attributes\TrackballGroupAttribute.cs" />
     <Compile Include="Assets\02.Scripts\csCloseDoor.cs" />
     <Compile Include="Assets\Dark Singularity\Core Scripts\SingularityPullable.cs" />
+    <Compile Include="Assets\02.Scripts\csPersonSound.cs" />
     <Compile Include="Assets\02.Scripts\csItemManager.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\PostProcessingBehaviour.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\EyeAdaptationModel.cs" />
@@ -280,9 +298,12 @@
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabModelWindow.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Buffs\AnimationSpeedDebuff.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\FadeOut.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTryFirstFloorTimelineController.cs" />
     <Compile Include="Assets\02.Scripts\csTurnSpace.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\Scripts\RotateMoveCamera.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Buffs\WaterUvAnimation.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\FadeIn.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoiceUI\Scripts\UiExtensions.cs" />
     <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\Closet\ClosetopencloseDoor.cs" />
     <Compile Include="Assets\paidAssets\RayFire\Tutorial\Scripts\ConnectivityEventScript.cs" />
@@ -290,13 +311,14 @@
     <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipR.cs" />
     <Compile Include="Assets\Snowforge_Necklace\!Scene\Rotator.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\UserLutModel.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckFirstAidKit.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
     <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Doors\opencloseDoor.cs" />
     <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\First Person Player\MouseLook.cs" />
-    <Compile Include="Assets\MecanimControl\Demo\Scripts\AnimationControlDemo.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Materials\Objects\FireJetPack\FlyDemo.cs" />
     <Compile Include="Assets\02.Scripts\csCountMagnet.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckFan.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\CustomInputField.cs" />
     <Compile Include="Assets\02.Scripts\csShootRay.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
@@ -364,9 +386,11 @@
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\FadeInOutStatus.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTryThirdFloorTimelineController.cs" />
     <Compile Include="Assets\paidAssets\BigBlit\ActivePack\Scripts\Runtime\Misc\ColorChanger.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTryFirstFloorScriptManager.cs" />
     <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipL.cs" />
     <Compile Include="Assets\02.Scripts\csMakeExitPortal.cs" />
     <Compile Include="Assets\02.Scripts\IKControl.cs" />
@@ -379,19 +403,22 @@
     <Compile Include="Assets\02.Scripts\csChangeScene2.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Rendering\BlurManager.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabBrowserWindow.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckFristMeet.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Other\QualityManager.cs" />
     <Compile Include="Assets\Photon\PhotonVoice\Demos\DemoVoicePun\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelButtonParent.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Input\SliderGamepadManager.cs" />
+    <Compile Include="Assets\02.Scripts\Timeline Scripts\EndingScriptManager.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Effects\Common\ImageEffectHelper.cs" />
     <Compile Include="Assets\02.Scripts\cshLauncher.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\ServerBrowserManager.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\02.Scripts\cshSecondFloorDoor.cs" />
+    <Compile Include="Assets\02.Scripts\CheckLastDoor.cs" />
+    <Compile Include="Assets\01.Scenes\CutScene\Intro\cshIntroToGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\paidAssets\RayFire\Plugins\Windows\x86_x64\RFLib_DotNet_2018.dll" />
@@ -453,7 +480,6 @@
     <None Include="Assets\paidAssets\effects\ARPG Effects\Readme.txt" />
     <None Include="Assets\photon-chat-readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\MecanimControl\Readme.txt" />
     <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Readme.txt" />
     <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\Distortion\Free\FreeDistortionCullOff.shader" />
     <None Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Shaders\SlimeCutOut.shader" />
@@ -1182,6 +1208,12 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Autodesk.Fbx.Editor">
+      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Formats.Fbx.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
@@ -1197,11 +1229,14 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="Autodesk.Fbx">
+      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.dll</HintPath>
@@ -1212,6 +1247,9 @@
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Formats.Fbx.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -1220,6 +1258,12 @@
     </Reference>
     <Reference Include="Unity.Animation.Rigging.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
