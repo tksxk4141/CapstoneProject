@@ -33,6 +33,7 @@ public class csOpenMiro : MonoBehaviour
         }
         if (other.gameObject.CompareTag("ExitMiro"))
         {
+            GameObject.Find("CheckLastDoor").GetComponent<CheckLastDoor>().isExitMiro = true;
             transform.position = posBack;
         }
     }

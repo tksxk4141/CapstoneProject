@@ -8,7 +8,9 @@ public class csOpenPortal : MonoBehaviour
     public GameObject portal;
     public GameObject openportal;
     float timer = 0.0f;
+    float timer2 = 0.0f;
     bool status = false;
+    bool status2 = false;
     int waitingTime = 1;
     GameObject open;
 
@@ -19,12 +21,22 @@ public class csOpenPortal : MonoBehaviour
         {
             if (status)
                 timer += Time.deltaTime;
+            if (status2)
+                timer2 += Time.deltaTime;
             if (timer > waitingTime)
             {
                 GameObject open = Instantiate(openportal, portalPos.position, portalPos.rotation);
                 Destroy(open, 1.0f);
                 timer = 0;
                 status = false;
+                status2 = true;
+            }
+            if (timer2 > 0.7f)
+            {
+                timer2 = 0.0f;
+                status2 = false;
+                GameObject idleportal = Instantiate(portal, portalPos.position, portalPos.rotation);
+                Destroy(idleportal, 3.0f);
             }
 
             if (Input.GetMouseButton(0))
@@ -36,7 +48,6 @@ public class csOpenPortal : MonoBehaviour
             {
                 gameObject.GetComponent<FirstPersonController>().anim.SetBool("isTeleKinesis", false);
             }
-
         }
     }
 }

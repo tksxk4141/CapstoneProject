@@ -92,6 +92,7 @@
     <Compile Include="Assets\paidAssets\NOT_Lonely\Advanced Cable Creator\ACC_Utilities.cs" />
     <Compile Include="Assets\paidAssets\effects\Hovl Studio\AOE Magic spells Vol.1\Scripts\ParticleCollisionInstance.cs" />
     <Compile Include="Assets\Brick Project Studio\SE Basic Assets\Scripts and Animations\Drawer\X Axis\Drawer_Pull_X.cs" />
+    <Compile Include="Assets\01.Scenes\CutScene\Intro\cshIntroToGame.cs" />
     <Compile Include="Assets\paidAssets\effects\ARPG Effects\Demo\Scripts\ARPGFXLoopScript.cs" />
     <Compile Include="Assets\02.Scripts\csUpLadder.cs" />
     <Compile Include="Assets\02.Scripts\Timeline Scripts\FadeInandOut.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Share\EffectsColorizer.cs" />
     <Compile Include="Assets\Sketchfab For Unity\Scripts\AssetBrowser\SketchfabModelWindow.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
+    <Compile Include="Assets\02.Scripts\CheckLastDoor.cs" />
     <Compile Include="Assets\paidAssets\effects\KriptoFX\Realistic Effects Pack 3\Scripts\Prefabs\Buffs\AnimationSpeedDebuff.cs" />
     <Compile Include="Assets\02.Scripts\Timeline Scripts\FadeOut.cs" />
     <Compile Include="Assets\02.Scripts\Timeline Scripts\SecondTryFirstFloorTimelineController.cs" />
@@ -309,6 +311,7 @@
     <Compile Include="Assets\paidAssets\RayFire\Tutorial\Scripts\ConnectivityEventScript.cs" />
     <Compile Include="Assets\02.Scripts\ChangeCursor.cs" />
     <Compile Include="Assets\Brick Project Studio\Apartment Kit\Scripts &amp; Animation\TableFlip\TableFlipR.cs" />
+    <Compile Include="Assets\02.Scripts\csIceSound.cs" />
     <Compile Include="Assets\Snowforge_Necklace\!Scene\Rotator.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\UserLutModel.cs" />
     <Compile Include="Assets\02.Scripts\Timeline Scripts\CheckFirstAidKit.cs" />
@@ -417,8 +420,7 @@
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainButton.cs" />
     <Compile Include="Assets\paidAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\paidAssets\Doctor&apos;s office\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\02.Scripts\CheckLastDoor.cs" />
-    <Compile Include="Assets\01.Scenes\CutScene\Intro\cshIntroToGame.cs" />
+    <Compile Include="Assets\02.Scripts\csCountFire.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\paidAssets\RayFire\Plugins\Windows\x86_x64\RFLib_DotNet_2018.dll" />
@@ -1244,8 +1246,14 @@
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Formats.Fbx.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
@@ -1258,12 +1266,6 @@
     </Reference>
     <Reference Include="Unity.Animation.Rigging.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

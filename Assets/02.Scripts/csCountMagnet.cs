@@ -10,7 +10,7 @@ public class csCountMagnet : MonoBehaviour
 
     void Update()
     {
-        if (countMagnet == 30)
+        if (countMagnet >= 30)
         {
             Instantiate(portal, portalPos.position, portalPos.rotation);
             countMagnet = 0;

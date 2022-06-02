@@ -48,7 +48,8 @@ public class cshPlayerInteraction : MonoBehaviour
         checkBar = GameObject.Find("Interaction").transform.Find("Checking").gameObject;
         checkCircle = GameObject.Find("Interaction").transform.Find("Checking Circle Panel").gameObject;
         gameMessage = GameObject.Find("Interaction").transform.Find("GameMessage").gameObject;
-        storyLine = GameObject.Find("TextCanvas").transform.Find("Panel").gameObject;
+        if(!(SceneManager.GetActiveScene().buildIndex==4|| SceneManager.GetActiveScene().buildIndex == 8))
+            storyLine = GameObject.Find("TextCanvas").transform.Find("Panel").gameObject;
         PauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Manager").gameObject;
 
         HpBar = GameObject.Find("Health");
@@ -63,7 +64,8 @@ public class cshPlayerInteraction : MonoBehaviour
     {
         SelectItem();
         CheckHp();
-        ShowstroyLine();
+        if (!(SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 8))
+            ShowstroyLine();
 
         PhysicsRaycaster ray = camera.GetComponent<PhysicsRaycaster>();
         results = new List<RaycastResult>();
@@ -141,23 +143,24 @@ public class cshPlayerInteraction : MonoBehaviour
                             tempitem.transform.SetParent(bodyParts[0].transform);
                             tempitem.transform.position = bodyParts[0].transform.position;
                             tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
+                            tempitem.SetActive(false);
                         }
                         if (itemlist[i].Equals("Repulsor"))
                         {
-                            GameObject temp = tempitem.transform.Find("Medieval_Fantasy_Glove_Right").gameObject;
-                            temp.transform.SetParent(bodyParts[2].transform);
-                            temp.transform.position = bodyParts[2].transform.position;
-                            temp.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                            tempitem.transform.SetParent(bodyParts[2].transform);
+                            tempitem.transform.position = bodyParts[2].transform.position;
+                            tempitem.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
                             if (this.name.Equals("Playerf(Clone)"))
                             {
-                                temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
-                                temp.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                                tempitem.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
                             }
                             else
                             {
-                                temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
-                                temp.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                                tempitem.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
                             }
+                            tempitem.SetActive(false);
                         }
                         if (itemlist[i].Equals("WingShoes"))
                         {
@@ -179,6 +182,25 @@ public class cshPlayerInteraction : MonoBehaviour
                                 temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
                                 temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
                             }
+                            temp1.SetActive(false);
+                            temp2.SetActive(false);
+                        }
+                        if (itemlist[i].Equals("PortalGun"))
+                        {
+                            tempitem.transform.SetParent(bodyParts[1].transform);
+                            tempitem.transform.position = bodyParts[1].transform.position;
+
+                            if (this.name.Equals("Playerf(Clone)"))
+                            {
+                                tempitem.transform.localPosition = new Vector3(-0.08f, 0.019f, 0.056f);
+                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                            }
+                            else
+                            {
+                                tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
+                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                            }
+                            tempitem.SetActive(false);
                         }
                     }
                 }
@@ -253,9 +275,43 @@ public class cshPlayerInteraction : MonoBehaviour
         ItemWindow[select].transform.Find("Border").gameObject.SetActive(true);
         if (ItemWindow[select].transform.Find("ItemImage(Clone)"))
             selecteditem = ItemWindow[select].transform.Find("ItemImage(Clone)").GetComponent<Image>().sprite.name;
+
+        switch (selecteditem)
+        {
+            case "Crown":
+                GameObject.Find(bodyParts[0].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(true);
+                break;
+            case "PortalGun":
+                GameObject.Find(bodyParts[1].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(true);
+                break;
+            case "Repulsor":
+                GameObject.Find(bodyParts[2].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(true);
+                break;
+            case "WingShoes":
+                GameObject.Find(bodyParts[3].name).transform.Find(selecteditem + "_Left").gameObject.SetActive(true);
+                GameObject.Find(bodyParts[4].name).transform.Find(selecteditem + "_Right").gameObject.SetActive(true);
+                break;
+        }
     }
     void DeselectItem(int deselect)
     {
+        switch (ItemWindow[deselect].transform.Find("ItemImage(Clone)").GetComponent<Image>().sprite.name)
+        {
+            case "Crown":
+                GameObject.Find(bodyParts[0].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(false);
+                break;
+            case "PortalGun":
+                GameObject.Find(bodyParts[1].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(false);
+                break;
+            case "Repulsor":
+                GameObject.Find(bodyParts[2].name).transform.Find(selecteditem + "(Clone)").gameObject.SetActive(false);
+                break;
+            case "WingShoes":
+                GameObject.Find(bodyParts[3].name).transform.Find(selecteditem + "_Left").gameObject.SetActive(false);
+                GameObject.Find(bodyParts[4].name).transform.Find(selecteditem + "_Right").gameObject.SetActive(false);
+                break;
+        }
+        //gameObject.transform.Find(ItemWindow[deselect].transform.Find("ItemImage(Clone)").GetComponent<Image>().sprite.name).gameObject.SetActive(false);
         ItemWindow[deselect].transform.Find("Border").gameObject.SetActive(false);
         selecteditem = "";
     }
@@ -403,23 +459,24 @@ public class cshPlayerInteraction : MonoBehaviour
                     tempitem.transform.SetParent(bodyParts[0].transform);
                     tempitem.transform.position = bodyParts[0].transform.position;
                     tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
+                    tempitem.SetActive(false);
                 }
                 if (pointerhit.transform.name.Equals("Repulsor"))
                 {
-                    GameObject temp = tempitem.transform.Find("Medieval_Fantasy_Glove_Right").gameObject;
-                    temp.transform.SetParent(bodyParts[2].transform);
-                    temp.transform.position = bodyParts[2].transform.position;
-                    temp.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                    tempitem.transform.SetParent(bodyParts[2].transform);
+                    tempitem.transform.position = bodyParts[2].transform.position;
+                    tempitem.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
                     if (this.name.Equals("Playerf(Clone)"))
                     {
-                        temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
-                        temp.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                        tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                        tempitem.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
                     }
                     else
                     {
-                        temp.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
-                        temp.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                        tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                        tempitem.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
                     }
+                    tempitem.SetActive(false);
                 }
                 if (pointerhit.transform.name.Equals("WingShoes"))
                 {
@@ -441,6 +498,8 @@ public class cshPlayerInteraction : MonoBehaviour
                         temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
                         temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
                     }
+                    temp1.SetActive(false);
+                    temp2.SetActive(false);
                 }
                 if (pointerhit.transform.name.Equals("PortalGun"))
                 {
@@ -457,7 +516,7 @@ public class cshPlayerInteraction : MonoBehaviour
                         tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
                         tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
                     }
-
+                    tempitem.SetActive(false);
                 }
                 for (int i = 0; i < ItemImage.Length; i++)
                 {
