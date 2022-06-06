@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19994572, g: 0.18930241, b: 0.34346682, a: 1}
+  m_IndirectSpecularColor: {r: 0.29254234, g: 0.27791128, b: 0.494223, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &454725425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,8 +256,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_Font: {fileID: 12800000, guid: e936790f5b3535848a9f5ae3fbc3c674, type: 3}
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -268,7 +268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD589\uC131 XZ-57"
+  m_Text: "\uBCC4\uB098\uB77C\uBD80\uB9AC\uBD80\uB9AC\uD589\uC131"
 --- !u!222 &454725426
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -291,10 +291,10 @@ RectTransform:
   m_Father: {fileID: 1089483183}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1386.1, y: -402.56958}
-  m_SizeDelta: {x: 357.61, y: 74.2881}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2976.643, y: 3.7984009}
+  m_SizeDelta: {x: 1200, y: -10.000036}
   m_Pivot: {x: 2.480536, y: 0.620159}
 --- !u!95 &454725428
 Animator:
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4f11ab3f12760bc44a1b622189e80add, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e906028dd8075654fb8a71efa4b9da1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -388,7 +388,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 590, y: 285}
+  m_SizeDelta: {x: 416, y: 316}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1089483178
 GameObject:
@@ -547,7 +547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1098229476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e936790f5b3535848a9f5ae3fbc3c674, type: 3}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
@@ -604,10 +604,10 @@ RectTransform:
   m_Father: {fileID: 1089483183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1386.1545, y: -323.64545}
-  m_SizeDelta: {x: 357.6735, y: 81.7592}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2976.643, y: 30.387268}
+  m_SizeDelta: {x: 1199.9999, y: -80.000046}
   m_Pivot: {x: 2.480536, y: 0.620159}
 --- !u!95 &1098229479
 Animator:

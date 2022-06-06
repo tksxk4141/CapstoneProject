@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Playables;
+using Photon.Pun;
 
 public class ThirdFloorTryToOpenDoorScriptManager : MonoBehaviour
 {

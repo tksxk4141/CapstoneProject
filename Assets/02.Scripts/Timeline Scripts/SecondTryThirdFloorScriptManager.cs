@@ -30,14 +30,16 @@ public class SecondTryThirdFloorScriptManager : MonoBehaviour
 
     public bool isFireExists = false;
 
-    GameObject EndingScriptManager;
+    public GameObject EndingScriptManager;
 
-    GameObject playerf;
-    GameObject playerm;
+    public GameObject playerf;
+    public GameObject playerm;
 
     private void Awake()
     {
         linePanel = TextCanvas.transform.Find("Panel").gameObject;
+        playerf = GameObject.Find("Playerf(Clone)");
+        playerm = GameObject.Find("Playerm(Clone)");
     }
 
     void Start()
@@ -47,23 +49,14 @@ public class SecondTryThirdFloorScriptManager : MonoBehaviour
         line = GameObject.Find("TextLine").GetComponent<TextMeshProUGUI>();
         linePanel.SetActive(false);
 
-
         EndingScriptManager = GameObject.Find("EndingScriptManager");
 
         isFireExists = GameObject.Find("RoomManager").GetComponent<cshRoomManager>().isFireExists;
-
-        playerf = GameObject.Find("Playerf(Clone)");
-        playerm = GameObject.Find("Playerm(Clone)");
     }
 
     void Update()
     {
-
         InputLine();
-
-
-
-
     }
     void InputLine()
     {
@@ -104,8 +97,6 @@ public class SecondTryThirdFloorScriptManager : MonoBehaviour
 
             isAdded = true;
             StartCoroutine(PrintLine());
-
-
         }
 
 
@@ -213,9 +204,7 @@ public class SecondTryThirdFloorScriptManager : MonoBehaviour
         }
 
 
-        //컷씬 동영상 끝나면 원래 플레이어 다시 켜기
-        playerf.SetActive(true);
-        playerm.SetActive(true);
+
 
         yield break;
 

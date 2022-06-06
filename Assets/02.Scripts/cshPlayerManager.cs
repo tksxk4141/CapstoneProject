@@ -10,7 +10,7 @@ public class cshPlayerManager : MonoBehaviourPunCallbacks
 {
     PhotonView PV;//포톤뷰 선언
     GameObject controller;
-
+    Transform spawnpoint;
     void Awake()
     {
         PV = GetComponent<PhotonView>();
@@ -26,13 +26,15 @@ public class cshPlayerManager : MonoBehaviourPunCallbacks
     }
     void CreateController()//플레이어 컨트롤러 만들기
     {
-        Transform spawnpoint = cshSpawnManager.Instance.GetSpawnpoint(cshLoginValue.usernum);
         Debug.Log("Instantiated Player Controller");
 
-        if(SceneManager.GetActiveScene().buildIndex == 3&& csItemManager.instance.destination==1)
+        if((SceneManager.GetActiveScene().buildIndex == 3 && csItemManager.instance.destination == 1) || (SceneManager.GetActiveScene().buildIndex == 7&& csItemManager.instance.destination==1))
             spawnpoint = cshSpawnManager.Instance.GetSpawnpoint(cshLoginValue.usernum+2);
-
-        if(cshLoginValue.usernum==0)
+        else 
+        {
+            spawnpoint = cshSpawnManager.Instance.GetSpawnpoint(cshLoginValue.usernum);
+        }
+        if (cshLoginValue.usernum==0)
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Playerf"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });
         else if(cshLoginValue.usernum==1)
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Playerm"), spawnpoint.position, spawnpoint.rotation, 0, new object[] { PV.ViewID });

@@ -11,14 +11,14 @@ public class csSizeCalc : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isSkilltime)
+        if (isSkilltime)    
         {
             timer -= Time.deltaTime;
         }

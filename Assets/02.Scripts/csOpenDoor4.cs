@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class csOpenDoor4 : MonoBehaviour
+public class csOpenDoor4 : MonoBehaviourPunCallbacks, IPunObservable
 {
     Vector3 position;
     public Vector3 startPosition;
@@ -26,6 +27,20 @@ public class csOpenDoor4 : MonoBehaviour
         {
             this.enabled = false;
             position = startPosition;
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(position);
+            stream.SendNext(startPosition);
+        }
+        else
+        {
+            this.position = (Vector3)stream.ReceiveNext();
+            this.startPosition = (Vector3)stream.ReceiveNext();
         }
     }
 }

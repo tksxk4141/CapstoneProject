@@ -124,7 +124,7 @@ public class cshLauncher : MonoBehaviourPunCallbacks
     {
         //PhotonNetwork.CurrentRoom.IsVisible = false; //게임 시작하면 안보임
 
-        PhotonNetwork.LoadLevel(2);//1인 이유는 빌드에서 scene 번호가 1번씩이기 때문이다. 0은 초기 씬.
+        PhotonNetwork.LoadLevel(19);//1인 이유는 빌드에서 scene 번호가 1번씩이기 때문이다. 0은 초기 씬.
     }
 
     public void LeaveRoom()

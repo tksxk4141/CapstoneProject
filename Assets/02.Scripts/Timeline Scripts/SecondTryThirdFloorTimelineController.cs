@@ -13,18 +13,22 @@ public class SecondTryThirdFloorTimelineController : MonoBehaviour
     public PlayableDirector playableDirector6;
     public PlayableDirector playableDirector7;
 
-    public int storyFlag;
+    public int storyFlag = 0;
 
 
     GameObject playerf;
     GameObject playerm;
 
+    private void Awake()
+    {
+        playerf = GameObject.Find("Playerf(Clone)");
+        playerm = GameObject.Find("Playerm(Clone)");
+    }
+
     void Start()
     {
         storyFlag = cshRoomManager.Instance.storyFlag;
 
-        playerf = GameObject.Find("Playerf(Clone)");
-        playerm = GameObject.Find("Playerm(Clone)");
     }
 
 
@@ -47,10 +51,9 @@ public class SecondTryThirdFloorTimelineController : MonoBehaviour
     public void DestroyButton(GameObject button)
     {
         button.SetActive(false);
+        EndingScriptManager.instance.StopCoroutine(EndingScriptManager.SetCursor());
+        Cursor.lockState = CursorLockMode.Locked;
 
-        //컷씬 동영상 끝나면 원래 플레이어 다시 켜기
-        playerf.SetActive(true);
-        playerm.SetActive(true);
     }
 
 

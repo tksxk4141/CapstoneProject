@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
 
-public class cshPlayerInteraction : MonoBehaviour
+public class cshPlayerInteraction : MonoBehaviourPunCallbacks
 {
     public GameObject player;
     public Camera camera;
@@ -22,8 +23,9 @@ public class cshPlayerInteraction : MonoBehaviour
     Vector3 new_ladder;
     //private string[] Item = new string[4];
     GameObject tempitem;
-
-    GameObject pressF, pressE, checkBar, checkCircle, HpBar, PauseMenu, gameMessage, storyLine;
+    PhotonView PV;
+    GameObject pressF, pressE, checkBar, checkCircle, PauseMenu, gameMessage;
+      //  GameObject storyLine;
     PointerEventData pointerEventData;
     List<RaycastResult> results;
     public string selecteditem = "";
@@ -36,34 +38,44 @@ public class cshPlayerInteraction : MonoBehaviour
     Transform hangPos;
 
     private bool isChecking = false;
-    private int itemnum = 0;
+    private int itemnum;
     public float hp = 100;
     private float high = 0;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        PV=GetComponent<PhotonView>();
+        itemnum = 0;
+    }
     void Start()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
         pointerEventData = new PointerEventData(EventSystem.current);
         pressF = GameObject.Find("Interaction").transform.Find("PressF").gameObject;
         pressE = GameObject.Find("Interaction").transform.Find("PressE").gameObject;
         checkBar = GameObject.Find("Interaction").transform.Find("Checking").gameObject;
         checkCircle = GameObject.Find("Interaction").transform.Find("Checking Circle Panel").gameObject;
         gameMessage = GameObject.Find("Interaction").transform.Find("GameMessage").gameObject;
-        if(!(SceneManager.GetActiveScene().buildIndex==4|| SceneManager.GetActiveScene().buildIndex == 8))
-            storyLine = GameObject.Find("TextCanvas").transform.Find("Panel").gameObject;
+        //  if(!(SceneManager.GetActiveScene().buildIndex==4|| SceneManager.GetActiveScene().buildIndex == 8))
+        //      storyLine = GameObject.Find("TextCanvas").transform.Find("Panel").gameObject;
         PauseMenu = GameObject.Find("Canvas").transform.Find("Pause Menu Manager").gameObject;
-
-        HpBar = GameObject.Find("Health");
-        HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
-        HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
         CheckItemlist();
         ShowstroyLine();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
+
         SelectItem();
-        CheckHp();
         if (!(SceneManager.GetActiveScene().buildIndex == 4 || SceneManager.GetActiveScene().buildIndex == 8))
             ShowstroyLine();
 
@@ -95,12 +107,12 @@ public class cshPlayerInteraction : MonoBehaviour
                 }
             }
 
-            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 2f)
+            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 3f)
             {
                 ShowInteractionKey();
                 GetItem();
             }
-            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 7f&& pointerhit.CompareTag("obstacle"))
+            if (Vector3.Distance(pointerhit.transform.position, gameObject.transform.position) <= 7f && pointerhit.CompareTag("obstacle"))
             {
                 ShowInteractionKey();
                 TryMovingObstacle();
@@ -108,99 +120,176 @@ public class cshPlayerInteraction : MonoBehaviour
             OnPipeline();
             OnLadder();
         }
-    }
-    void CheckHp()
-    {
-        HpBar.transform.Find("Slider").GetComponent<Slider>().value = hp;
-        HpBar.GetComponentInChildren<TextMeshProUGUI>().text = ((int)hp).ToString() + "%";
+
     }
     void CheckItemlist()
     {
+        //itemnum = 0;
         if (cshLoginValue.usernum == 0)
         {
-            itemlist = csItemManager.instance.item_list1.ToList();
+            if (csItemManager.instance.item_list1.Count != 0)
+            {
+                for (int i = 0; i < csItemManager.instance.item_list1.Count; i++)
+                {
+                    for (int j = 0; j < ItemImage.Length; j++)
+                    {
+                        if (ItemImage[j].name.Equals(csItemManager.instance.item_list1[i]))
+                        {
+                            GameObject tempimg = Instantiate(ItemImagePrefab);
+                            tempimg.GetComponent<Image>().sprite = ItemImage[j];
+                            tempimg.transform.SetParent(ItemWindow[itemnum].transform);
+                            tempimg.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                            tempimg.transform.localScale = Vector3.one;
+                            itemnum++;
+                            if (csItemManager.instance.item_list1[i].Equals("Crown"))
+                            {
+                                tempitem.transform.SetParent(bodyParts[0].transform);
+                                tempitem.transform.position = bodyParts[0].transform.position;
+                                tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
+                                tempitem.SetActive(false);
+                            }
+                            if (csItemManager.instance.item_list1[i].Equals("Repulsor"))
+                            {
+                                tempitem.transform.SetParent(bodyParts[2].transform);
+                                tempitem.transform.position = bodyParts[2].transform.position;
+                                tempitem.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                                    tempitem.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                                }
+                                else
+                                {
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                                    tempitem.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                                }
+                                tempitem.SetActive(false);
+                            }
+                            if (csItemManager.instance.item_list1[i].Equals("WingShoes"))
+                            {
+                                GameObject temp1 = tempitem.transform.Find("WingShoes_Left").gameObject;
+                                GameObject temp2 = tempitem.transform.Find("WingShoes_Right").gameObject;
+                                temp1.transform.SetParent(bodyParts[3].transform);
+                                temp2.transform.SetParent(bodyParts[4].transform);
+                                temp1.transform.position = bodyParts[3].transform.position;
+                                temp2.transform.position = bodyParts[4].transform.position;
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    temp1.transform.localPosition = new Vector3(0.1f, -0.095f, 0.015f);
+                                    temp1.transform.localRotation = Quaternion.Euler(new Vector3(70f, 10f, 97f));
+                                    temp2.transform.localPosition = new Vector3(-0.1f, 0.146f, -0.017f);
+                                    temp2.transform.localRotation = Quaternion.Euler(new Vector3(-110f, 12f, -97f));
+                                }
+                                else
+                                {
+                                    temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
+                                    temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
+                                }
+                                temp1.SetActive(false);
+                                temp2.SetActive(false);
+                            }
+                            if (csItemManager.instance.item_list1[i].Equals("PortalGun"))
+                            {
+                                tempitem.transform.SetParent(bodyParts[1].transform);
+                                tempitem.transform.position = bodyParts[1].transform.position;
+
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    tempitem.transform.localPosition = new Vector3(-0.08f, 0.019f, 0.056f);
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                                }
+                                else
+                                {
+                                    tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                                }
+                                tempitem.SetActive(false);
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (cshLoginValue.usernum == 1)
         {
-            itemlist = csItemManager.instance.item_list2.ToList();
-        }
-        if (itemlist.Count != 0)
-        {
-            for (int i = 0; i < itemlist.Count; i++)
+            if (csItemManager.instance.item_list2.Count != 0)
             {
-                for (int j = 0; j < ItemImage.Length; j++)
+                for (int i = 0; i < csItemManager.instance.item_list2.Count; i++)
                 {
-                    if (ItemImage[j].name.Equals(itemlist[i]))
+                    for (int j = 0; j < ItemImage.Length; j++)
                     {
-                        GameObject tempimg = Instantiate(ItemImagePrefab);
-                        tempimg.GetComponent<Image>().sprite = ItemImage[j];
-                        tempimg.transform.SetParent(ItemWindow[itemnum].transform);
-                        tempimg.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
-                        tempimg.transform.localScale = Vector3.one;
-                        itemnum++;
-                        if (itemlist[i].Equals("Crown"))
+                        if (ItemImage[j].name.Equals(csItemManager.instance.item_list2[i]))
                         {
-                            tempitem.transform.SetParent(bodyParts[0].transform);
-                            tempitem.transform.position = bodyParts[0].transform.position;
-                            tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
-                            tempitem.SetActive(false);
-                        }
-                        if (itemlist[i].Equals("Repulsor"))
-                        {
-                            tempitem.transform.SetParent(bodyParts[2].transform);
-                            tempitem.transform.position = bodyParts[2].transform.position;
-                            tempitem.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
-                            if (this.name.Equals("Playerf(Clone)"))
+                            GameObject tempimg = Instantiate(ItemImagePrefab);
+                            tempimg.GetComponent<Image>().sprite = ItemImage[j];
+                            tempimg.transform.SetParent(ItemWindow[itemnum].transform);
+                            tempimg.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+                            tempimg.transform.localScale = Vector3.one;
+                            itemnum++;
+                            if (csItemManager.instance.item_list2[i].Equals("Crown"))
                             {
-                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
-                                tempitem.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                                tempitem.transform.SetParent(bodyParts[0].transform);
+                                tempitem.transform.position = bodyParts[0].transform.position;
+                                tempitem.transform.Translate(new Vector3(0.0f, 0.2f, 0.0f));
+                                tempitem.SetActive(false);
                             }
-                            else
+                            if (csItemManager.instance.item_list2[i].Equals("Repulsor"))
                             {
-                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
-                                tempitem.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                                tempitem.transform.SetParent(bodyParts[2].transform);
+                                tempitem.transform.position = bodyParts[2].transform.position;
+                                tempitem.transform.localScale = new Vector3(2.0f, 1.5f, 1.5f);
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 180f));
+                                    tempitem.transform.localPosition = new Vector3(0.191f, 0.041f, -0.047f);
+                                }
+                                else
+                                {
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 270f));
+                                    tempitem.transform.localPosition = new Vector3(0.195f, -0.054f, 0.007f);
+                                }
+                                tempitem.SetActive(false);
                             }
-                            tempitem.SetActive(false);
-                        }
-                        if (itemlist[i].Equals("WingShoes"))
-                        {
-                            GameObject temp1 = tempitem.transform.Find("WingShoes_Left").gameObject;
-                            GameObject temp2 = tempitem.transform.Find("WingShoes_Right").gameObject;
-                            temp1.transform.SetParent(bodyParts[3].transform);
-                            temp2.transform.SetParent(bodyParts[4].transform);
-                            temp1.transform.position = bodyParts[3].transform.position;
-                            temp2.transform.position = bodyParts[4].transform.position;
-                            if (this.name.Equals("Playerf(Clone)"))
+                            if (csItemManager.instance.item_list2[i].Equals("WingShoes"))
                             {
-                                temp1.transform.localPosition = new Vector3(0.1f, -0.095f, 0.015f);
-                                temp1.transform.localRotation = Quaternion.Euler(new Vector3(70f, 10f, 97f));
-                                temp2.transform.localPosition = new Vector3(-0.1f, 0.146f, -0.017f);
-                                temp2.transform.localRotation = Quaternion.Euler(new Vector3(-110f, 12f, -97f));
+                                GameObject temp1 = tempitem.transform.Find("WingShoes_Left").gameObject;
+                                GameObject temp2 = tempitem.transform.Find("WingShoes_Right").gameObject;
+                                temp1.transform.SetParent(bodyParts[3].transform);
+                                temp2.transform.SetParent(bodyParts[4].transform);
+                                temp1.transform.position = bodyParts[3].transform.position;
+                                temp2.transform.position = bodyParts[4].transform.position;
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    temp1.transform.localPosition = new Vector3(0.1f, -0.095f, 0.015f);
+                                    temp1.transform.localRotation = Quaternion.Euler(new Vector3(70f, 10f, 97f));
+                                    temp2.transform.localPosition = new Vector3(-0.1f, 0.146f, -0.017f);
+                                    temp2.transform.localRotation = Quaternion.Euler(new Vector3(-110f, 12f, -97f));
+                                }
+                                else
+                                {
+                                    temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
+                                    temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
+                                }
+                                temp1.SetActive(false);
+                                temp2.SetActive(false);
                             }
-                            else
+                            if (csItemManager.instance.item_list2[i].Equals("PortalGun"))
                             {
-                                temp1.transform.localPosition = new Vector3(0.1f, -0.13f, -0.01f);
-                                temp2.transform.localPosition = new Vector3(-0.1f, 0.17f, 0.01f);
-                            }
-                            temp1.SetActive(false);
-                            temp2.SetActive(false);
-                        }
-                        if (itemlist[i].Equals("PortalGun"))
-                        {
-                            tempitem.transform.SetParent(bodyParts[1].transform);
-                            tempitem.transform.position = bodyParts[1].transform.position;
+                                tempitem.transform.SetParent(bodyParts[1].transform);
+                                tempitem.transform.position = bodyParts[1].transform.position;
 
-                            if (this.name.Equals("Playerf(Clone)"))
-                            {
-                                tempitem.transform.localPosition = new Vector3(-0.08f, 0.019f, 0.056f);
-                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                                if (this.name.Equals("Playerf(Clone)"))
+                                {
+                                    tempitem.transform.localPosition = new Vector3(-0.08f, 0.019f, 0.056f);
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                                }
+                                else
+                                {
+                                    tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
+                                    tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
+                                }
+                                tempitem.SetActive(false);
                             }
-                            else
-                            {
-                                tempitem.transform.localPosition = new Vector3(-0.405f, 0.077f, -0.089f);
-                                tempitem.transform.localRotation = Quaternion.Euler(new Vector3(165f, 90f, 0f));
-                            }
-                            tempitem.SetActive(false);
                         }
                     }
                 }
@@ -311,20 +400,19 @@ public class cshPlayerInteraction : MonoBehaviour
                 GameObject.Find(bodyParts[4].name).transform.Find(selecteditem + "_Right").gameObject.SetActive(false);
                 break;
         }
-        //gameObject.transform.Find(ItemWindow[deselect].transform.Find("ItemImage(Clone)").GetComponent<Image>().sprite.name).gameObject.SetActive(false);
         ItemWindow[deselect].transform.Find("Border").gameObject.SetActive(false);
         selecteditem = "";
     }
   
     void ShowstroyLine()
     {
+        /*
         if (storyLine.activeSelf)
         {
             for(int i = 0; i < ItemWindow.Length; i++)
             {
                 ItemWindow[i].SetActive(false);
             }
-            HpBar.SetActive(false);
         }
         else
         {
@@ -332,8 +420,7 @@ public class cshPlayerInteraction : MonoBehaviour
             {
                 ItemWindow[i].SetActive(true);
             }
-            HpBar.SetActive(true);
-        }
+        }*/
     }
 
     void ShowInteractionKey()
@@ -342,6 +429,7 @@ public class cshPlayerInteraction : MonoBehaviour
             pressF.SetActive(true);
         else
             pressF.SetActive(false);
+
         if (pointerhit.CompareTag("Item"))
             pressE.SetActive(true);
         else
@@ -367,6 +455,8 @@ public class cshPlayerInteraction : MonoBehaviour
     {
         if (GetComponent<FirstPersonController>().isHanging) //매달린 상태면
         {
+            hang2 = new Vector3(transform.position.x, 2.8f, hang.z);
+            gameObject.transform.position = hang2;
             if (Input.GetKey(KeyCode.Space))
             {
                 GetComponent<FirstPersonController>().isHanging = false;
@@ -382,9 +472,7 @@ public class cshPlayerInteraction : MonoBehaviour
             {
                 GetComponent<FirstPersonController>().isHanging = true;
                 hangPos = GameObject.Find("hangPos").transform;
-                hang = pointerhit.transform.position;
-                hang2 = new Vector3(hang.x, 2.8f, hang.z);
-                gameObject.transform.position = hang2;
+                hang = pointerhit.transform.position;     
                 gameObject.transform.rotation = hangPos.rotation;
             }
         }
@@ -398,18 +486,21 @@ public class cshPlayerInteraction : MonoBehaviour
             {
                 ladderTopPos = GameObject.Find("ladderTopPos").transform;
                 gameObject.transform.position = ladderTopPos.position;
-                GetComponent<FirstPersonController>().isLadder = false;
+                GetComponent<FirstPersonController>().LadderToTop = true;
+                
             }
             else
             {
                 if (Input.GetKey(KeyCode.W))
                 {
+                    GetComponent<FirstPersonController>().isLadder = true;
                     high += Time.deltaTime;
                     new_ladder = new Vector3(ladderPos.position.x, high, ladderPos.position.z);
                     gameObject.transform.position = new_ladder;
                 }
                 if (Input.GetKey(KeyCode.S))
                 {
+                    GetComponent<FirstPersonController>().isLadder = true;
                     high -= Time.deltaTime;
                     new_ladder = new Vector3(ladderPos.position.x, high, ladderPos.position.z);
                     gameObject.transform.position = new_ladder;

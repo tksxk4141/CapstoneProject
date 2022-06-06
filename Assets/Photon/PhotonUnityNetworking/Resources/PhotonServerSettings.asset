@@ -42,6 +42,11 @@ MonoBehaviour:
   - CantHearYou
   - ChangeColour
   - HeresWhy
+  - Jump
+  - OnMouseOver
+  - opening
+  - rpcclose
+  - rpcopen
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

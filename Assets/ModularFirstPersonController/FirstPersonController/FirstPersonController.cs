@@ -465,15 +465,10 @@ public class FirstPersonController : MonoBehaviour
                 anim.SetLayerWeight(0, 0);
                 anim.SetLayerWeight(3, 1);
             }
-            else
-            {
-                anim.SetBool("isHangLadder", false);
-                anim.SetLayerWeight(0, 1);
-                anim.SetLayerWeight(3, 0);
-            }
             if (LadderToTop)
             {
                 anim.SetBool("isHangLadder", false);
+                StartCoroutine(ChangeLayer());
             }
             //if character is Hanging
             if ((Input.GetAxis("Horizontal") != 0) || (Input.GetAxis("Vertical") != 0))
@@ -620,8 +615,6 @@ public class FirstPersonController : MonoBehaviour
         else
         {
             isGrounded = false;
-            audio.clip = GetComponent<csPersonSound>().jump;
-            audio.Play();
             anim.SetBool("isGrounded", false);
         }
     }
@@ -680,7 +673,26 @@ public class FirstPersonController : MonoBehaviour
 
     }
 
+    IEnumerator ChangeLayer()
+    {
+        while (true)
+        {
+            isLadder = false;
+            yield return null;
+            if (anim.GetCurrentAnimatorStateInfo(3).IsName("HangDrop")
+                 || anim.IsInTransition(3))
+            {
+                continue;
+            }
+            anim.SetLayerWeight(0, 1);
+            anim.SetLayerWeight(3, 0);
+            
+            yield break;
 
+
+        }
+
+    }
 
     private void HeadBob()
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace SojaExiles
 
@@ -13,6 +14,7 @@ namespace SojaExiles
 		public AudioClip openSound;
 		public AudioClip closeSound;
 		public bool open;
+		PhotonView PV;
 		//public Transform Player;
 		public Transform[] Players = new Transform[2];
 		void Start()
@@ -25,6 +27,8 @@ namespace SojaExiles
 			Players[0] = GameObject.Find("SceneManager").GetComponent<cshSceneManager>().Player[0].transform;
 			Players[1] = GameObject.Find("SceneManager").GetComponent<cshSceneManager>().Player[1].transform;
 		}
+
+		[PunRPC]
 		void OnMouseOver()
 		{
 			{
@@ -63,6 +67,7 @@ namespace SojaExiles
 			}
 		}
 
+
 		IEnumerator opening()
 		{
 			print("you are opening the door");
@@ -78,7 +83,5 @@ namespace SojaExiles
 			open = false;
 			yield return new WaitForSeconds(.5f);
 		}
-
-
-	}
+    }
 }

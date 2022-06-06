@@ -18,9 +18,10 @@ public class EndingScriptManager : MonoBehaviour
     public PlayableDirector playableDirector1;
     public GameObject selectButton;
 
-
+    public static EndingScriptManager instance;
     private void Awake()
     {
+        EndingScriptManager.instance = this; 
         linePanel = TextCanvas.transform.Find("Panel").gameObject;
 
     }
@@ -61,7 +62,7 @@ public class EndingScriptManager : MonoBehaviour
             line.text = lineDict.Key;
             yield return new WaitForSecondsRealtime(3.0f);
         }
-
+        StartCoroutine(SetCursor());
         selectButton.SetActive(true);
         linePanel.SetActive(false);
         lineDictionary.Clear();
@@ -69,6 +70,16 @@ public class EndingScriptManager : MonoBehaviour
         
 
         yield break;
+    }
+    public static IEnumerator SetCursor()
+    {
+        while (true)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
+            yield return null;
+        }
     }
 
 }

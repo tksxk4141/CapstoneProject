@@ -7,6 +7,7 @@ public class csOpenMiro : MonoBehaviour
 {
     Vector3 pos;
     Vector3 posBack;
+    bool issmall;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,11 @@ public class csOpenMiro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        issmall = gameObject.GetComponent<csSizeCalc>().isSmall;
     }
     void OnTriggerEnter(Collider other)
     {
-        if (GetComponent<csSizeCalc>().isSmall)
+        if (issmall)
         {
             if (other.gameObject.CompareTag("miro"))
             {

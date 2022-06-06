@@ -41,7 +41,7 @@ public class cshRoomManager : MonoBehaviourPunCallbacks//다른 포톤 반응 받아들이
 
     void OnSceneLoaded(Scene scene, LoadSceneMode load)
     {
-        if (scene.buildIndex == 2|| scene.buildIndex == 3)//게임씬이면. 0은 현재 시작메뉴 씬이다. 
+        if (!(scene.buildIndex == 0|| scene.buildIndex == 1))//게임씬이면. 0은 현재 시작메뉴 씬이다. 
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
